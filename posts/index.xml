@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>所有文章 - 分隔符</title>
+        <link>https://MaxwellF1.github.io/posts/</link>
+        <description>所有文章 | 分隔符</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
+            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Tue, 10 Aug 2021 00:28:23 &#43;0800</lastBuildDate><atom:link href="https://MaxwellF1.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Test</title>
+    <link>https://MaxwellF1.github.io/test/</link>
+    <pubDate>Tue, 10 Aug 2021 00:28:23 &#43;0800</pubDate><author>
+        <name>Separator</name>
+    </author><guid>https://MaxwellF1.github.io/test/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>测试搜索</title>
+    <link>https://MaxwellF1.github.io/%E6%B5%8B%E8%AF%95%E6%90%9C%E7%B4%A2/</link>
+    <pubDate>Mon, 09 Aug 2021 18:23:35 &#43;0800</pubDate><author>
+        <name>Separator</name>
+    </author><guid>https://MaxwellF1.github.io/%E6%B5%8B%E8%AF%95%E6%90%9C%E7%B4%A2/</guid>
+    <description><![CDATA[我说这个algoria和fuse为什么都搜不到啊。太怪了吧，fuck。折腾一下午]]></description>
+</item><item>
+    <title>第一篇</title>
+    <link>https://MaxwellF1.github.io/%E7%AC%AC%E4%B8%80%E7%AF%87/</link>
+    <pubDate>Sun, 08 Aug 2021 21:47:20 &#43;0800</pubDate><author>
+        <name>Separator</name>
+    </author><guid>https://MaxwellF1.github.io/%E7%AC%AC%E4%B8%80%E7%AF%87/</guid>
+    <description><![CDATA[再试试这一个可以了吗，有毒吧。glaafaf]]></description>
+</item></channel>
+</rss>
