@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on 分隔符</title>
+    <link>https://maxwellf1.github.io/about/</link>
+    <description>Recent content in Abouts on 分隔符</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
+    <webMaster>separateur.f@gmail.com (Separator)</webMaster>
+    <lastBuildDate>Tue, 10 Aug 2021 17:12:25 +0800</lastBuildDate><atom:link href="https://maxwellf1.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About.zhcn</title>
+      <link>https://maxwellf1.github.io/about/about.zhcn/</link>
+      <pubDate>Tue, 10 Aug 2021 17:12:25 +0800</pubDate>
+      <author>separateur.f@gmail.com (Separator)</author>
+      <guid>https://maxwellf1.github.io/about/about.zhcn/</guid>
+      <description>你好</description>
+    </item>
+    
+  </channel>
+</rss>
