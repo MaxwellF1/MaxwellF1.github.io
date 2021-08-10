@@ -4,9 +4,16 @@
         <link>https://maxwellf1.github.io/</link>
         <description>Separator</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
-            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Tue, 10 Aug 2021 16:31:16 &#43;0800</lastBuildDate>
+            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Tue, 10 Aug 2021 16:41:19 &#43;0800</lastBuildDate>
             <atom:link href="https://maxwellf1.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Test3</title>
+    <link>https://maxwellf1.github.io/test3/</link>
+    <pubDate>Tue, 10 Aug 2021 16:41:19 &#43;0800</pubDate><author>
+        <name>Separator</name>
+    </author><guid>https://maxwellf1.github.io/test3/</guid>
+    <description><![CDATA[这下是出现在哪里呢？ha]]></description>
+</item><item>
     <title>Test2</title>
     <link>https://maxwellf1.github.io/test2/</link>
     <pubDate>Tue, 10 Aug 2021 16:31:16 &#43;0800</pubDate><author>
