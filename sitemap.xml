@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <sitemap>
-    <loc>https://maxwellf1.github.io/en/sitemap.xml</loc>
-    
-  </sitemap>
-  
-  <sitemap>
-    <loc>https://maxwellf1.github.io/zh-cn/sitemap.xml</loc>
-    
-      <lastmod>2021-08-10T16:41:19+08:00</lastmod>
-    
-  </sitemap>
-  
-</sitemapindex>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://maxwellf1.github.io/en/sitemap.xml</loc></sitemap><sitemap><loc>https://maxwellf1.github.io/zh-cn/sitemap.xml</loc></sitemap></sitemapindex>
