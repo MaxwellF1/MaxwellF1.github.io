@@ -2,75 +2,57 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://MaxwellF1.github.io/en/posts/</loc><lastmod>2021-08-09T23:23:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/en/about/</loc><priority>0</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/posts/"
+                        href="https://maxwellf1.github.io/about/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://MaxwellF1.github.io/en/posts/"
+                    href="https://maxwellf1.github.io/en/about/"
                     /></url><url>
-            <loc>https://MaxwellF1.github.io/en/</loc><lastmod>2021-08-09T23:23:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/en/authors/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/"
+                        href="https://maxwellf1.github.io/authors/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://MaxwellF1.github.io/en/"
+                    href="https://maxwellf1.github.io/en/authors/"
                     /></url><url>
-            <loc>https://MaxwellF1.github.io/en/%E7%AC%AC%E4%B8%80%E7%AF%87/</loc><lastmod>2021-08-09T23:23:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/en/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/%E7%AC%AC%E4%B8%80%E7%AF%87/"
+                        href="https://maxwellf1.github.io/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://MaxwellF1.github.io/en/%E7%AC%AC%E4%B8%80%E7%AF%87/"
+                    href="https://maxwellf1.github.io/en/categories/"
                     /></url><url>
-            <loc>https://MaxwellF1.github.io/en/about/</loc><priority>0</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/about/"
+                        href="https://maxwellf1.github.io/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://MaxwellF1.github.io/en/about/"
+                    href="https://maxwellf1.github.io/en/"
                     /></url><url>
-            <loc>https://MaxwellF1.github.io/en/authors/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/en/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/authors/"
+                        href="https://maxwellf1.github.io/series/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://MaxwellF1.github.io/en/authors/"
+                    href="https://maxwellf1.github.io/en/series/"
                     /></url><url>
-            <loc>https://MaxwellF1.github.io/en/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/en/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/categories/"
+                        href="https://maxwellf1.github.io/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://MaxwellF1.github.io/en/categories/"
-                    /></url><url>
-            <loc>https://MaxwellF1.github.io/en/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/series/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://MaxwellF1.github.io/en/series/"
-                    /></url><url>
-            <loc>https://MaxwellF1.github.io/en/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://MaxwellF1.github.io/tags/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://MaxwellF1.github.io/en/tags/"
+                    href="https://maxwellf1.github.io/en/tags/"
                     /></url></urlset>

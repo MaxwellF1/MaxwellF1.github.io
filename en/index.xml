@@ -1,17 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Separator</title>
-        <link>https://MaxwellF1.github.io/en/</link>
+        <link>https://maxwellf1.github.io/en/</link>
         <description>Separator</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
-            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Mon, 09 Aug 2021 23:23:04 &#43;0800</lastBuildDate>
-            <atom:link href="https://MaxwellF1.github.io/en/index.xml" rel="self" type="application/rss+xml" />
-        <item>
-    <title>第一篇</title>
-    <link>https://MaxwellF1.github.io/en/%E7%AC%AC%E4%B8%80%E7%AF%87/</link>
-    <pubDate>Mon, 09 Aug 2021 23:23:04 &#43;0800</pubDate><author>
-        <name>Separator</name>
-    </author><guid>https://MaxwellF1.github.io/en/%E7%AC%AC%E4%B8%80%E7%AF%87/</guid>
-    <description><![CDATA[]]></description>
-</item></channel>
+            <webMaster>separateur.f@gmail.com (Separator)</webMaster>
+            <atom:link href="https://maxwellf1.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+        </channel>
 </rss>
