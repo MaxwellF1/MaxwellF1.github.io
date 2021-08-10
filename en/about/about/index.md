@@ -1,4 +1,0 @@
-# About.en
-
-Hello
-
