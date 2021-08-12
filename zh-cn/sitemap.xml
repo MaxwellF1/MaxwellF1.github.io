@@ -2,9 +2,28 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://maxwellf1.github.io/posts/</loc><lastmod>2021-08-11T20:49:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://maxwellf1.github.io/2021-08-11/</loc><lastmod>2021-08-11T20:49:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://maxwellf1.github.io/</loc><lastmod>2021-08-11T20:49:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/categories/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://maxwellf1.github.io/en/categories/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="https://maxwellf1.github.io/categories/"
+                    /></url><url>
+            <loc>https://maxwellf1.github.io/posts/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/tags/server/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/tags/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://maxwellf1.github.io/en/tags/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="https://maxwellf1.github.io/tags/"
+                    /></url><url>
+            <loc>https://maxwellf1.github.io/categories/tools/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://maxwellf1.github.io/en/"
@@ -13,6 +32,8 @@
                     hreflang="zh-cn"
                     href="https://maxwellf1.github.io/"
                     /></url><url>
+            <loc>https://maxwellf1.github.io/2021-08-12/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/2021-08-11/</loc><lastmod>2021-08-11T20:49:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://maxwellf1.github.io/about/</loc><lastmod>2021-08-11T00:43:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -31,15 +52,6 @@
                     hreflang="zh-cn"
                     href="https://maxwellf1.github.io/authors/"
                     /></url><url>
-            <loc>https://maxwellf1.github.io/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://maxwellf1.github.io/en/categories/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://maxwellf1.github.io/categories/"
-                    /></url><url>
             <loc>https://maxwellf1.github.io/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -48,13 +60,4 @@
                     rel="alternate"
                     hreflang="zh-cn"
                     href="https://maxwellf1.github.io/series/"
-                    /></url><url>
-            <loc>https://maxwellf1.github.io/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://maxwellf1.github.io/en/tags/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://maxwellf1.github.io/tags/"
                     /></url></urlset>
