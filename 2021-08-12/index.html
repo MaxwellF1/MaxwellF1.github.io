@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/maxwellf1.github.io\/2021-08-12\/"
-        },"genre": "posts","keywords": "Server","wordcount":  1895 ,
+        },"genre": "posts","keywords": "Server","wordcount":  2305 ,
         "url": "https:\/\/maxwellf1.github.io\/2021-08-12\/","datePublished": "2021-08-12T10:51:13+08:00","dateModified": "2021-08-12T10:51:13+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -135,8 +135,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>Tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1895 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2305 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -154,6 +154,7 @@
       <ul>
         <li><a href="#基本使用">基本使用</a></li>
         <li><a href="#跳板机-1">跳板机</a></li>
+        <li><a href="#命令">命令</a></li>
       </ul>
     </li>
     <li><a href="#参考文献">参考文献</a></li>
@@ -270,12 +271,34 @@ Host TargetMachine           #远程服务器名称
 <p>新建会话主机名填入IP，端口号填入自己的端口号，再输入用户名和密码，保存并登陆之后应该可以看到文件的界面。</p>
 <h3 id="跳板机-1">跳板机</h3>
 <p>在session界面点击高级选项，在高级设置中找到<code>隧道/Tunnel</code>，勾选上使用SSH隧道，并输入跳转机的IP、端口号以及用户名和密码，如果不输入密码，可以在<code>Tunnel</code>界面下方添加自己的私钥文件(需要是ppk，如果不是可以用PuTTYgen来生成/转换)。登录界面的信息填最终想通过跳转机连接到的服务器的配置即可。</p>
+<h3 id="命令">命令</h3>
+<p>scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。可能会稍微影响一下速度。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。另外，scp还非常不占资源，不会提高多少系统负荷，在这一点上，rsync就远远不及它了。虽然 rsync比scp会快一点，但当小文件众多的情况下，rsync会导致硬盘I/O非常高，而scp基本不影响系统正常使用。</p>
+<p>当在同一个服务器<strong>不同账户</strong>之间传输文件时可以用scp命令。例如想把服务器下B用户目录下的某文件b拷到A用户目录下，可以采用如下指令</p>
+<p><code>scp -r dir_B/b serverIP:/dir_A</code></p>
+<p>具体命令及参数可以见参考文献的几个链接。</p>
 <h2 id="参考文献">参考文献</h2>
 <ol>
-<li><a href="https://zhuanlan.zhihu.com/p/68577071" target="_blank" rel="noopener noreffer">VS Code Remote SSH配置</a></li>
-<li><a href="https://blog.csdn.net/huitailangyz/article/details/106392021" target="_blank" rel="noopener noreffer">vscode通过跳板机连接远程服务器_huitailangyz的博客-CSDN博客</a></li>
-<li><a href="https://www.cnblogs.com/fuyaozhishang/p/8033849.html" target="_blank" rel="noopener noreffer">使用WinScp连接远程服务器和传输文件 - 你要 - 博客园 (cnblogs.com)</a></li>
-<li><a href="https://www.huaweicloud.com/articles/6a1b96826310fba7855e727ec591159f.html" target="_blank" rel="noopener noreffer">winscp通过跳板机访问远程服务器（使用秘钥的方式传输文件） - 华为云 (huaweicloud.com)</a></li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/68577071" target="_blank" rel="noopener noreffer">VS Code Remote SSH配置</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/huitailangyz/article/details/106392021" target="_blank" rel="noopener noreffer">vscode通过跳板机连接远程服务器_huitailangyz的博客-CSDN博客</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/fuyaozhishang/p/8033849.html" target="_blank" rel="noopener noreffer">使用WinScp连接远程服务器和传输文件 - 你要 - 博客园 (cnblogs.com)</a></p>
+</li>
+<li>
+<p><a href="https://www.huaweicloud.com/articles/6a1b96826310fba7855e727ec591159f.html" target="_blank" rel="noopener noreffer">winscp通过跳板机访问远程服务器（使用秘钥的方式传输文件） - 华为云 (huaweicloud.com)</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/a772304419/article/details/104703797" target="_blank" rel="noopener noreffer">Linux scp -r命令主机间文件复制_学亮编程手记-CSDN博客</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/qq_36898043/article/details/79404815?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~default-2.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~default-2.control" target="_blank" rel="noopener noreffer">scp详解_LZJWXJ树袋熊-CSDN博客</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/weixin_42744102/article/details/87913348" target="_blank" rel="noopener noreffer">Linux在同一台服务器不同账号之间传输文件_蓝一潇的博客-CSDN博客</a></p>
+</li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

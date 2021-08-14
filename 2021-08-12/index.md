@@ -89,10 +89,31 @@ cat temp >> authorized_keys
 
 在session界面点击高级选项，在高级设置中找到`隧道/Tunnel`，勾选上使用SSH隧道，并输入跳转机的IP、端口号以及用户名和密码，如果不输入密码，可以在`Tunnel`界面下方添加自己的私钥文件(需要是ppk，如果不是可以用PuTTYgen来生成/转换)。登录界面的信息填最终想通过跳转机连接到的服务器的配置即可。
 
+### 命令
+
+scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。可能会稍微影响一下速度。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。另外，scp还非常不占资源，不会提高多少系统负荷，在这一点上，rsync就远远不及它了。虽然 rsync比scp会快一点，但当小文件众多的情况下，rsync会导致硬盘I/O非常高，而scp基本不影响系统正常使用。
+
+当在同一个服务器**不同账户**之间传输文件时可以用scp命令。例如想把服务器下B用户目录下的某文件b拷到A用户目录下，可以采用如下指令
+
+`scp -r dir_B/b serverIP:/dir_A`
+
+具体命令及参数可以见参考文献的几个链接。
+
 ## 参考文献
 
 1. [VS Code Remote SSH配置](https://zhuanlan.zhihu.com/p/68577071)
+
 2. [vscode通过跳板机连接远程服务器_huitailangyz的博客-CSDN博客](https://blog.csdn.net/huitailangyz/article/details/106392021)
+
 3. [使用WinScp连接远程服务器和传输文件 - 你要 - 博客园 (cnblogs.com)](https://www.cnblogs.com/fuyaozhishang/p/8033849.html)
+
 4. [winscp通过跳板机访问远程服务器（使用秘钥的方式传输文件） - 华为云 (huaweicloud.com)](https://www.huaweicloud.com/articles/6a1b96826310fba7855e727ec591159f.html)
+
+5. [Linux scp -r命令主机间文件复制_学亮编程手记-CSDN博客](https://blog.csdn.net/a772304419/article/details/104703797)
+
+6. [scp详解_LZJWXJ树袋熊-CSDN博客](https://blog.csdn.net/qq_36898043/article/details/79404815?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~default-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~default-2.control)
+
+7. [Linux在同一台服务器不同账号之间传输文件_蓝一潇的博客-CSDN博客](https://blog.csdn.net/weixin_42744102/article/details/87913348)
+
+   
 
