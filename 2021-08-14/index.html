@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">3Blue1Brown-Neural Networks - 分隔符</title><meta name="Description" content="Separator"><meta property="og:title" content="3Blue1Brown-Neural Networks" />
+<meta property="og:description" content="Chapter 1-But what is a Neural Network 以识别数字的例子进行引入，人脑可以将看到的不同形状写法的数字分辨成0-9的某一个，但是如何让机器程序来解决？ 将这个问题描述为：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maxwellf1.github.io/2021-08-14/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-14T18:25:56+08:00" />
+<meta property="article:modified_time" content="2021-08-16T21:11:19+08:00" /><meta property="og:site_name" content="分隔符" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
+
+<meta name="twitter:title" content="3Blue1Brown-Neural Networks"/>
+<meta name="twitter:description" content="Chapter 1-But what is a Neural Network 以识别数字的例子进行引入，人脑可以将看到的不同形状写法的数字分辨成0-9的某一个，但是如何让机器程序来解决？ 将这个问题描述为："/>
+<meta name="application-name" content="Separator">
+<meta name="apple-mobile-web-app-title" content="Separator">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://maxwellf1.github.io/2021-08-14/" /><link rel="prev" href="https://maxwellf1.github.io/2021-08-12/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "3Blue1Brown-Neural Networks",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/maxwellf1.github.io\/2021-08-14\/"
+        },"genre": "posts","keywords": "3Blue1Brown, Neural Networks, AI","wordcount":  6120 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-08-14\/","datePublished": "2021-08-14T18:25:56+08:00","dateModified": "2021-08-16T21:11:19+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Separator"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="分隔符"><span class="header-title-pre"><i class="fab fa-earlybirds fa-fw" aria-hidden="true"></i></span>Separator</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/2021-08-14/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="分隔符"><span class="header-title-pre"><i class="fab fa-earlybirds fa-fw" aria-hidden="true"></i></span>Separator</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/2021-08-14/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">3Blue1Brown-Neural Networks</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/ai/"><i class="far fa-folder fa-fw"></i>AI</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-14">2021-08-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-16">2021-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6120 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-1-but-what-is-a-neural-network">Chapter 1-But what is a Neural Network</a>
+      <ul>
+        <li><a href="#神经网络的结构">神经网络的结构</a>
+          <ul>
+            <li><a href="#神经元">神经元</a></li>
+            <li><a href="#层layers">层(Layers)</a></li>
+          </ul>
+        </li>
+        <li><a href="#信息在层之间的传递">信息在层之间的传递</a>
+          <ul>
+            <li><a href="#sigmoid-squishification--bias">Sigmoid Squishification &amp; Bias</a></li>
+            <li><a href="#more-neorons">More neorons</a></li>
+          </ul>
+        </li>
+        <li><a href="#网络只是一个函数">网络只是一个函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter2-gradient-descent-how-neural-networks-learn">Chapter2 Gradient descent, how neural networks learn</a>
+      <ul>
+        <li><a href="#网络如何学习">网络如何学习</a>
+          <ul>
+            <li><a href="#成本函数">成本函数</a></li>
+            <li><a href="#the-cost-over-many-examples">The Cost Over Many Examples</a></li>
+            <li><a href="#minimizing-the-cost-function">Minimizing the cost function</a></li>
+            <li><a href="#梯度">梯度</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#chapter-3-analyzing-our-neural-network">Chapter 3-Analyzing our neural network</a></li>
+    <li><a href="#chapter4-what-is-backpropagation-really-doing">Chapter4-What is backpropagation really doing</a>
+      <ul>
+        <li><a href="#the-intuition-for-backpropagation">The Intuition for Backpropagation</a>
+          <ul>
+            <li><a href="#增加偏置值">增加偏置值</a></li>
+            <li><a href="#增加权重">增加权重</a></li>
+            <li><a href="#改变前一层的激活值">改变前一层的激活值</a></li>
+          </ul>
+        </li>
+        <li><a href="#对所有的训练数据重复">对所有的训练数据重复</a></li>
+        <li><a href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter5-backpropagation-calculus">Chapter5-Backpropagation calculus</a>
+      <ul>
+        <li><a href="#用反向传播计算梯度">用反向传播计算梯度</a></li>
+        <li><a href="#前一层的权重和偏置">前一层的权重和偏置</a></li>
+        <li><a href="#更复杂的网络">更复杂的网络</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="chapter-1-but-what-is-a-neural-network">Chapter 1-But what is a Neural Network</h2>
+<p>以识别数字的例子进行引入，人脑可以将看到的不同形状写法的数字分辨成0-9的某一个，但是如何让机器程序来解决？</p>
+<p>将这个<strong>问题</strong>描述为：编写一个程序，输入是一个28×28像素的网格，输出0到9之间的某个数字。</p>
+<p>这个对于人眼和大脑都非常容易的问题，对于程序却不好描述，比如传统的if语句、类、对象等等。神经网络则试图编写一个模仿大脑的程序来解决这些问题。</p>
+<h3 id="神经网络的结构">神经网络的结构</h3>
+<p>神经网络多种多样，例如图像处理中广泛使用的CNN，还有RNN和transformer等。我们从最简单最经典的模型来考虑，即多层感知机Plain vanilla(aka &ldquo;multilayer perceptron&rdquo;)</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/plain-vanilla.png"
+        data-srcset="../../../images/2021/08/plain-vanilla.png, ../../../images/2021/08/plain-vanilla.png 1.5x, ../../../images/2021/08/plain-vanilla.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/plain-vanilla.png"
+        title="img"
+    /></p>
+<h4 id="神经元">神经元</h4>
+<p>首先将神经元考虑为一个“装有数字的容器”，0.0-1.0之间的值表示被激活的“程度”，来类比人脑中神经元的活跃程度。一堆连接在一起的神经元就构成了神经网络。</p>
+<p>对于本问题，输入图像中有28 × 28 = 784个像素，每一个的亮度值都介于0.0和1.0之间，因此我们在网络中对应设计一个有784个神经元的 <strong>“输入层”</strong> ，同样的最后一层的 <strong>“输出层”</strong> 包含10个神经元，代表0-9中某个可能的数字。从图中可以看出，在中间还会有一些层，即 <strong>“隐含层”</strong> ，涉及到一些处理，在图中的网络中设计了2个隐含层，每一层有16个神经元，设置可以是任意的，可以根据情况选择层数和神经元数。</p>
+<h4 id="层layers">层(Layers)</h4>
+<p>为什么需要Layers？可以从图中看到某一层的每个神经元会通过一条线连接到下一层的每一个神经元，通常这些线是带有权重的，表示某层中每一个神经元的&quot;activation&quot;(激活)如何对下一层的每个神经元的激活产生影响。而确定这些权重的选择，是神经网络作为信息处理机制。我们需要考虑几个问题：为什么期望这样的分层结构能够智能运行？我们期待什么？中间层做的是什么？为什么不直接把所有像素连接到最终输出？</p>
+<p>先从一个 <strong>不一定正确</strong> 的想法谈起，我们可以希望倒数第二层的每个神经元识别出组成数字的更小的、可识别的组件，比如圆圈，长线段等等，并希望第二层可以对应一些更小的组分，如下图所示：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/layer-hypothesis.png"
+        data-srcset="../../../images/2021/08/layer-hypothesis.png, ../../../images/2021/08/layer-hypothesis.png 1.5x, ../../../images/2021/08/layer-hypothesis.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/layer-hypothesis.png"
+        title="img"
+    /></p>
+<p>虽然事实可能与我们这种猜想不同，但我们可以推断到的是，层将问题分解为一些很小的“碎片”。除了图像处理外，解析语音也会用到分层，例如先讲原始音频解析为不同的声音，然后组合成某些音节，再结合成单词，进一步构成短语以及更想法等。因此，神经网络的分层结构是很棒的，它允许我们将困难的问题分为bite-size steps，因此从一层移动到下一层相对会简单一些。</p>
+<h3 id="信息在层之间的传递">信息在层之间的传递</h3>
+<p>在神经元之间的连线上分配权重，代表着该层的神经元与下一层的新神经元如何相关。如果该层的某个神经元是激活的，正权重代表着与之相连的下一层神经元也应该是激活的，负权重则相反。各个权重会以一种有趣的方式相互作用和冲突。得到第二层的神经元的值需要计算第一层所有神经元激活值的加权和。我们自然可以想到如果我们想找某一块中是否有某一个小“碎片”，不妨将目标区域对应的权重都设为正值，其它赋值为零，这样的确在目标区域有我们希望的“碎片”时更容易将下一层的神经元激活，<strong>但是</strong>设想一种输入像素全都是激活(纯白)的图像，这种方法的计算结果仍然是“激活”，所以我们如果真的想确定这存在着一条短边(“碎片”)，需要给目标区域周围一圈的权重赋值为负，这样当目标区域像素亮而周围像素暗的时候，综合将最大，例如对于下图的例子中，激活程度B&gt;D&gt;A&gt;C.</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/weights-question.png"
+        data-srcset="../../../images/2021/08/weights-question.png, ../../../images/2021/08/weights-question.png 1.5x, ../../../images/2021/08/weights-question.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/weights-question.png"
+        title="img"
+    /></p>
+<h4 id="sigmoid-squishification--bias">Sigmoid Squishification &amp; Bias</h4>
+<p>上述加权和可能是任何一个数，但是对于该网络我们希望激活值处于0.0-1.0之间，所以需要对得到的结果进行“压缩”。sigmoid是其中一个常用的函数。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/sigmoid.png"
+        data-srcset="../../../images/2021/08/sigmoid.png, ../../../images/2021/08/sigmoid.png 1.5x, ../../../images/2021/08/sigmoid.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/sigmoid.png"
+        title="img"
+    /></p>
+<p>但我们希望的可能并非是在大于零时将神经元激活，可能希望加权和大于某个设定值再让其激活，所以我们可以引入Bias，计算公式为：
+$$
+\sigma(\omega_{1}a_{1} + \omega_{2}a_{2} + &hellip; +\omega_{n}a_{n} + Bias)
+$$
+可以得出，权重告诉我们第二层的神经元关注什么样的pixel pattern，而Bias告诉我们加权和需要多大才认为神经元的激活有意义。</p>
+<p><strong>注</strong>：sigmoid是有很明显的缺点的。从图中可以看出在数变得极大或者极小时这个函数的变化非常平坦，这不利于我们训练网络。因为当我们调整权重的时候，可能根本没有明显的变化。所以当前广泛采用ReLU(Rectified Linear Unit)。它的输出永远不会变平缓，因此调整权重总能够提供有效的反馈，使得训练过程更快更高效，尤其是设计的层数很多时(深度学习)。</p>
+<p>我们采用sigmoid/ReLUd的原因是如果我们单纯的计算加权和，整个函数会是<strong>线性</strong>的，这会使得网络dramatically less expressive。</p>
+<h4 id="more-neorons">More neorons</h4>
+<p>刚刚是针对一个神经元讨论，但第一层就有784个神经元，则与第二层之间有784×16个权重和16个Bias，加上其它层，权重和偏差加起来一共有13002个，也就是说我们需要针对很大规模的参数进行调节。在之前提到我们对于网络工作模式的设想不一定是正确的，但比起将隐含层当成一个黑箱，这样通过设想来猜测意义，可以对我们修正结构有方向性的帮助。理想情况下网络既能够正确工作，我们也能知道结构设计和参数的缘由。可以通过一些简化的记号通过矩阵的写法来表示众多的参数，这也利于编程：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/compact_notation.png"
+        data-srcset="../../../images/2021/08/compact_notation.png, ../../../images/2021/08/compact_notation.png 1.5x, ../../../images/2021/08/compact_notation.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/compact_notation.png"
+        title="image-20210815001821577"
+    /></p>
+<h3 id="网络只是一个函数">网络只是一个函数</h3>
+<p>之前提到将神经元看做保存数字的容器，其实将其视为一个函数更加准确，它的输入是上一层神经元的所有输出，它的输出是一个0-1之间的值，而图示的整个网络，可以看做输入784的值，输出10个值的函数。</p>
+<h2 id="chapter2-gradient-descent-how-neural-networks-learn">Chapter2 Gradient descent, how neural networks learn</h2>
+<p>梯度下降法是训练的核心思想，不仅是神经网络学习的基础，也是其它许多机器学习技术的基础。</p>
+<h3 id="网络如何学习">网络如何学习</h3>
+<p>机器学习与其它计算机科学的不同之处在于，我们没有为执行特定任务编写指令。对于第一节的例子，我们没有编写识别数字的算法，相反我们编写了一个可以接收一堆手写数字的示例图像以及它们是什么的标签的算法，并且调整网络的13002个参数(输入的标记图像称为“训练数据”)。我们通过这些数据来训练网络，然后使用一些网络没见过的数据在训练后对其进行测试。</p>
+<p>机器的学习过程更像是一个微积分的问题，它目的是找到特定函数的最小值。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/finding-minima.png"
+        data-srcset="../../../images/2021/08/finding-minima.png, ../../../images/2021/08/finding-minima.png 1.5x, ../../../images/2021/08/finding-minima.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/finding-minima.png"
+        title="img"
+    /></p>
+<h4 id="成本函数">成本函数</h4>
+<p>现在很多时候将cost/lost function混为一谈。回顾一下，加权值和中的权重可以认为代表连接的强弱，而偏置值则表明神经押元是否更容易被激活。首先将所有权重和偏差初始化为随机数，网络会表现很糟，需要设计一种方式来识别目前做的很糟糕，然后帮助它改进。所以我们来定义一个<strong>成本函数</strong>，将输出与期望值之间的差异平方相加，称为该训练数据的“成本”。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/cost-calculation.png"
+        data-srcset="../../../images/2021/08/cost-calculation.png, ../../../images/2021/08/cost-calculation.png 1.5x, ../../../images/2021/08/cost-calculation.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/cost-calculation.png"
+        title="img"
+    /></p>
+<h4 id="the-cost-over-many-examples">The Cost Over Many Examples</h4>
+<p>为了真正衡量网络的性能，我们要考虑所有(可能数万个)训练示例的<strong>平均</strong>成本，这个平均值是我们衡量网络有多糟糕以及计算机应该感觉有多糟糕的指标。同样的，这个平均成本也是一个复杂的函数，网络本身就是一个复杂的函数，平均成本(代价函数)要再网络的基础上进行更高一层的计算，它将13002个权重和偏置值作为其参数，而输出一个数值(差的平方和)。</p>
+<h4 id="minimizing-the-cost-function">Minimizing the cost function</h4>
+<p>告诉计算机有多么糟糕只是一部分，我们更需要告诉它应该如何改进。对于简单的函数，我们可以通过求导，来知道在什么位置可以取到(局部)最小值，但对于复杂的函数，本次实例中上万个参数的函数，是无法这样进行的。一个更灵活的技巧是，先随便挑一个输入值，然后考虑往什么方向走，可以将函数值减小，这样在每一个点都求梯度，并沿着下降的方向走一小步(斜率越小这个步长就越小，从而防止调整过度)，就可以逼近函数的某个局部最小值(可能存在很多，取决于从哪个随机输入开始)，可以想象成小球从山上往下滚。</p>
+<h4 id="梯度">梯度</h4>
+<p>在高维空间中我们需要一个向量来表示最陡峭的方向，多元微积分中将这个向量称为”梯度“，代表哪个方向增加函数最快，取该向量的反方向就可以得到最快减小函数的步进方向，这个梯度向量的长度表示了这个最陡的斜坡有多陡。所以最小化这个函数的算法是计算这个梯度方向，然后下降，不断重复，这个过程就叫做”梯度下降“。</p>
+<p>如果我们把这13002个权重和偏置值都放到一个列向量里，则代价函数的(负)梯度也会是一个有13002个条目的向量。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/weights-and-gradient.png"
+        data-srcset="../../../images/2021/08/weights-and-gradient.png, ../../../images/2021/08/weights-and-gradient.png 1.5x, ../../../images/2021/08/weights-and-gradient.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/weights-and-gradient.png"
+        title="img"
+    /></p>
+<p>负梯度指出了我们应该如何调整每个参数，才可以让代价函数的值下降的最快。该向量的每个分量告诉我们两件事，符号表示相应分量应该向上还是向下，更重要的一点是，梯度中各个分量的相对大小告诉我们这些调整哪一个更为重要(改变哪个性价比更高)。计算梯度的算法是神经网络的核心，称为back propagation(反向传播算法)。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/gradient-explained.png"
+        data-srcset="../../../images/2021/08/gradient-explained.png, ../../../images/2021/08/gradient-explained.png 1.5x, ../../../images/2021/08/gradient-explained.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/gradient-explained.png"
+        title="img"
+    /></p>
+<p>注意，我们一直提到寻找最小值，这要求代价函数必须是平滑的，这也解释了为什么人工神经元的激活值是连续的，而不是二元式。</p>
+<p>回顾一下我们之前设想的，第二层识别一些小的“碎片”，第三层识别更大一些的pattern，但事实上这个网络本身并不是这样做的，第二层的结果看起来会杂乱无章，只是代表某个局部最小值而已。而且因为我们的训练数据只有从0-9的标签数据，相当于整个空间只局限于此，所以训练好的网络也可能将某个毫无意义的噪声图像识别为某个数字。当然MLP只是一个很古老的模型，现在有更多更好用的新模型出现。</p>
+<h2 id="chapter-3-analyzing-our-neural-network">Chapter 3-Analyzing our neural network</h2>
+<p>这是一个mini lesson。将分析训练好的网络做了什么以及原因。之前例子中的网络训练好后大概有96%的正确率，这其实是难以置信的，因为我们从来没有明确告诉它要寻找怎么样的pattern。</p>
+<p>之前我们猜测第二层识别小的边缘，第三层识别更大一些的子组件来激发这个结构。但事实上我们的网络不是这样的，查看从第一层到下一层的过度相关联的权重时，它们看起来几乎是随机的，虽然有一些松散的pattern，但显然不是我们之前设想的：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/second-layer-weights.png"
+        data-srcset="../../../images/2021/08/second-layer-weights.png, ../../../images/2021/08/second-layer-weights.png 1.5x, ../../../images/2021/08/second-layer-weights.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/second-layer-weights.png"
+        title="img"
+    /></p>
+<p>似乎在可能权重和偏差的13002维空间中，网络发现了某一个局部最小值，尽管成功的对大多数图像进行了分类，但并没有完全掌握更普遍的模式，例如之前提到的随机输入一个噪声图像，智能的系统应该输出不确定的结果(要么没有激活，要么均匀激活输出层)，但其实它自信的给出了一些无意义的答案。而且这个网络的训练数据基本都是居中且大小合适的数字，并没有让网络在网格的一个区域上获取的模式知识转移到另一个区域，我们的训练算法甚至没有使用某些像素和其他像素相邻的事实。</p>
+<h2 id="chapter4-what-is-backpropagation-really-doing">Chapter4-What is backpropagation really doing</h2>
+<h3 id="the-intuition-for-backpropagation">The Intuition for Backpropagation</h3>
+<p>反向传播中的各种符号和上下标一开始会使人困扰。首先我们忽略这些公式符号，从逐步了解每个训练示例对权重和偏差的影响开始。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/classify-as-2.png"
+        data-srcset="../../../images/2021/08/classify-as-2.png, ../../../images/2021/08/classify-as-2.png 1.5x, ../../../images/2021/08/classify-as-2.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/classify-as-2.png"
+        title="img"
+    /></p>
+<p>对于这个样本，我们希望网络分类为2，我们希望输出值的变动大小应该与当前值和目标值之间的差异成正比，例如，增加数字“2”神经元的激活值要比减少数字“8”的激活值更为重要，因为后者已经接近理想输出。我们以“2”神经元为例：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08//output-neuron-equation.png"
+        data-srcset="../../../images/2021/08//output-neuron-equation.png, ../../../images/2021/08//output-neuron-equation.png 1.5x, ../../../images/2021/08//output-neuron-equation.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08//output-neuron-equation.png"
+        title="img"
+    /></p>
+<p>它的激活值是来自于前一层所有的加权综合，加上一个偏置值，最后经过sigmoid/ReLU等进行处理。因此我们有三种方法来增大这个激活值：</p>
+<ol>
+<li>增加偏置值</li>
+<li>增加权重</li>
+<li>改变上一层的激活值</li>
+</ol>
+<h4 id="增加偏置值">增加偏置值</h4>
+<p>这是最简单的方法，与改变前一层的权重或者激活值不同，改变偏置对加权和的影响是恒定而且可预测的。</p>
+<h4 id="增加权重">增加权重</h4>
+<p>权重与激活值相乘，所以具有不同程度的影响，与来自前一层更亮的神经元的连接具有较大的影响，因为这些权重与更大的激活值相乘。即当我们进行梯度下降时，不仅关心每个是要向上还是向下调整，更关心调整哪些参数性价比最高。</p>
+<p>这里类似于神经科学中关于神经元如何学习的理论——“赫布理论(Hebbian theory)”，即“一同激活的神经元关联在一起”。这里，权重的最大增长，即最大的连接加强的部分，就会发生在已经最活跃的神经元和我们希望变得更活跃的神经元之间。</p>
+<h4 id="改变前一层的激活值">改变前一层的激活值</h4>
+<p>如果前一层中所有正权重连接的神经元更亮而负权重连接的神经元更暗的话，就可以增加我们想要的神经元的激发程度。与改变权重的时候类似，我们想造成更大的影响，就要根据对应权重的大小，对激活值做出成比例的改变。当然，我们无法直接改变激活值。</p>
+<h3 id="对所有的训练数据重复">对所有的训练数据重复</h3>
+<p>我们之前只考虑了要增强2的激活，但还要减弱最后一层中其他神经元的激活。但每个神经元对于如何改变倒数第二层都有自己的想法，这意味着有许多竞争性的请求来改变前一层。所以我们会将数字“2”神经元的期待和其它输出神经元的期待全加在一起，作为如何改变倒数第二层神经元的指示。这些期待的变化不仅与对应的权重成比例，也与每个神经元激活值需要改变的量成比例。这其实就是“反向传播”的理念，我们可以一直递归的将这个过程进行从后一层到前一层，直到第一层。</p>
+<p>刚刚我们讨论的是仅仅对一个训练样本进行的过程，我们还需要对其他所有的训练样本同样的进行一遍反向传播。记录下每个样本想要怎样修改，然后取平均值。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/average-over-all.png"
+        data-srcset="../../../images/2021/08/average-over-all.png, ../../../images/2021/08/average-over-all.png 1.5x, ../../../images/2021/08/average-over-all.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/average-over-all.png"
+        title="average-over-all"
+    /></p>
+<p>这里一系列的对每个权重和偏置的平均微调大小，不严格的讲，就是之前说的代价函数的负梯度(至少是其标量的倍数)。</p>
+<h3 id="stochastic-gradient-descent">Stochastic Gradient Descent</h3>
+<p>实际操作中如果梯度下降的每一步都用上每一个训练样本来计算会非常耗时。可以采取一个技巧，首先将训练数据打乱并分成很多组minibatch。然后根据每个minibatch而不是整个训练样本集来计算梯度下降。它并不会提供准确最有效的梯度下降，但给出了一个很好的近似值，而且计算时间大大减少，这就是随机梯度下降。我们并不是小心谨慎的一步步沿着最佳方向走到底部，而是有点像个醉汉快速但是绕着小圈子跑下去。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/stochastic-comparison.png"
+        data-srcset="../../../images/2021/08/stochastic-comparison.png, ../../../images/2021/08/stochastic-comparison.png 1.5x, ../../../images/2021/08/stochastic-comparison.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/stochastic-comparison.png"
+        title="sgd"
+    /></p>
+<p>注：我们需要非常多的标记好的数据才能良好的完成训练过程。</p>
+<h2 id="chapter5-backpropagation-calculus">Chapter5-Backpropagation calculus</h2>
+<p>从微积分的角度看在机器学习中我们一般是怎么理解链式法则的。</p>
+<p>梯度向量的条目是代价函数相对于网络所有不同权重的偏置的偏导数，也就是说反向传播帮我们计算出了那些导数。</p>
+<h3 id="用反向传播计算梯度">用反向传播计算梯度</h3>
+<p>首先我们设定一些记号：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/backpropagation_notations.png"
+        data-srcset="../../../images/2021/08/backpropagation_notations.png, ../../../images/2021/08/backpropagation_notations.png 1.5x, ../../../images/2021/08/backpropagation_notations.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/backpropagation_notations.png"
+        title="img"
+    /></p>
+<p>a<sup>(L)</sup> 表示L层某个神经元的激活值，y是我们期待的输出，C<sub>0</sub>是代价函数，我们想知道在数轴上挪动ω可以对C造成多大影响，就是求导，可以利用链式法则。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/derivation_all_examples.png"
+        data-srcset="../../../images/2021/08/derivation_all_examples.png, ../../../images/2021/08/derivation_all_examples.png 1.5x, ../../../images/2021/08/derivation_all_examples.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/derivation_all_examples.png"
+        title="img"
+    /></p>
+<p>网络的完整代价函数是求的每个样本的平均值，所以导数我们也要求平均值。而这个只是梯度向量的一个分量，所有权重和偏置的导数组成梯度向量。从求导结果我们可以看出，当前一个神经元更活跃时(a<sup>(L-1)</sup>)，改变ω可以有更好的效果，偏导的最后一部分告诉我们该导数与实际输出与期望输出之间的差异成正比，也就是说当实际输出偏差很大时，即使微小的改动也会对代价产生明显的影响。</p>
+<p>偏置的梯度更简单一些：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/derivation_bias.png"
+        data-srcset="../../../images/2021/08/derivation_bias.png, ../../../images/2021/08/derivation_bias.png 1.5x, ../../../images/2021/08/derivation_bias.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/derivation_bias.png"
+        title="img"
+    /></p>
+<h3 id="前一层的权重和偏置">前一层的权重和偏置</h3>
+<p>我们已经确定了最后一层的权重和偏置的变化如何影响总体的成本，这意味着我们已经有了梯度向量的两个部分(前面提到三种改变方式)。现在我们要探讨一下代价函数对上一层激活值的敏感程度(对a<sup>(L-1)</sup>求偏导)。虽然我们不能直接改变激活值，但我们仍应该关注这一方面，因为我们可以反向利用链式法则，来计算代价函数对之前(前一层)的权重和偏置的敏感度。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/previous.png"
+        data-srcset="../../../images/2021/08/previous.png, ../../../images/2021/08/previous.png 1.5x, ../../../images/2021/08/previous.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/previous.png"
+        title="img"
+    /></p>
+<p>例如求偏导$\frac{\partial(C_0)}{\partial(w^{(L-1)})}$​​​可以通过如下的链式法则得出，因此我们可以通过链式法则得到任何一个参数的导数，即可以计算出整个梯度向量的各个分量。
+$$
+\frac{\partial(C_0)}{\partial(w^{(L-1)})}=\frac{\partial(z^{(L-1)})}{\partial(w^{(L-1)})}\frac{\partial(a^{(L-1)})}{\partial(z^{(L-1)})}\frac{\partial(z^{L})}{\partial(a^{(L-1)})}\frac{\partial(a^{L})}{\partial(z^{L})}\frac{\partial(C_0)}{\partial(a^{L})}
+$$</p>
+<h3 id="更复杂的网络">更复杂的网络</h3>
+<p>上面的例子中是“一条线”的简单网络，对于复杂网络其实没有太大变化，只是多了一些下标而已，来指出这是该层的哪个神经元对应的量。而代价函数和对于上一层激活值的偏导变成了求和的模式：</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/backpropagation_general.png"
+        data-srcset="../../../images/2021/08/backpropagation_general.png, ../../../images/2021/08/backpropagation_general.png 1.5x, ../../../images/2021/08/backpropagation_general.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/backpropagation_general.png"
+        title="img"
+    /></p>
+<p>可以用下面的公式总结，对于下面黄色框的公式，当不是最后一层的时候用上式，是最后一层用下式。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/08/backpropagation_conclusion.png"
+        data-srcset="../../../images/2021/08/backpropagation_conclusion.png, ../../../images/2021/08/backpropagation_conclusion.png 1.5x, ../../../images/2021/08/backpropagation_conclusion.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/08/backpropagation_conclusion.png"
+        title="img"
+    /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-08-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2021-08-14/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks" data-hashtags="3Blue1Brown,Neural Networks,AI"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="https://maxwellf1.github.io/2021-08-14/" data-hashtag="3Blue1Brown"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://maxwellf1.github.io/2021-08-14/" data-title="3Blue1Brown-Neural Networks"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/3blue1brown/">3Blue1Brown</a>,&nbsp;<a href="/tags/neural-networks/">Neural Networks</a>,&nbsp;<a href="/tags/ai/">AI</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2021-08-12/" class="prev" rel="prev" title="远程服务器连接"><i class="fas fa-angle-left fa-fw"></i>远程服务器连接</a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Separator</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"VAN0Y7S9D7","algoliaIndex":"MaxwellF1.github.io","algoliaSearchKey":"4ef882f6c66e278079c983bc04ea3826","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"sharerjs":true};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+</body>
+
+</html>

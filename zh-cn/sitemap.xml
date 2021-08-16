@@ -2,7 +2,11 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://maxwellf1.github.io/categories/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/tags/3blue1brown/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/2021-08-14/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/tags/ai/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/categories/ai/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/categories/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://maxwellf1.github.io/en/categories/"
@@ -11,9 +15,9 @@
                     hreflang="zh-cn"
                     href="https://maxwellf1.github.io/categories/"
                     /></url><url>
-            <loc>https://maxwellf1.github.io/posts/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://maxwellf1.github.io/tags/server/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://maxwellf1.github.io/tags/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/tags/neural-networks/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/posts/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/tags/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://maxwellf1.github.io/en/tags/"
@@ -22,8 +26,7 @@
                     hreflang="zh-cn"
                     href="https://maxwellf1.github.io/tags/"
                     /></url><url>
-            <loc>https://maxwellf1.github.io/categories/tools/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://maxwellf1.github.io/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://maxwellf1.github.io/</loc><lastmod>2021-08-16T21:11:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://maxwellf1.github.io/en/"
@@ -32,7 +35,9 @@
                     hreflang="zh-cn"
                     href="https://maxwellf1.github.io/"
                     /></url><url>
-            <loc>https://maxwellf1.github.io/2021-08-12/</loc><lastmod>2021-08-12T10:51:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/tags/server/</loc><lastmod>2021-08-14T18:03:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/categories/tools/</loc><lastmod>2021-08-14T18:03:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://maxwellf1.github.io/2021-08-12/</loc><lastmod>2021-08-14T18:03:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://maxwellf1.github.io/2021-08-11/</loc><lastmod>2021-08-11T20:49:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://maxwellf1.github.io/about/</loc><lastmod>2021-08-11T00:43:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
