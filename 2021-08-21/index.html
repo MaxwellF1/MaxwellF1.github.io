@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model - 分隔符</title><meta name="Description" content="Separator"><meta property="og:title" content="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model" />
+<meta property="og:description" content="受功耗限制，不能无限提高单块芯片的频率，不如用很多处理器来进行计算。 Seymour Cray: Would you rather plow a field with two strong oxen or 1024 chickens? What kind of Processors are we Building Major design constraint: Power. 不采用CPU是因为C" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maxwellf1.github.io/2021-08-21/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-21T21:34:49+08:00" />
+<meta property="article:modified_time" content="2021-08-23T23:59:20+08:00" /><meta property="og:site_name" content="分隔符" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
+
+<meta name="twitter:title" content="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model"/>
+<meta name="twitter:description" content="受功耗限制，不能无限提高单块芯片的频率，不如用很多处理器来进行计算。 Seymour Cray: Would you rather plow a field with two strong oxen or 1024 chickens? What kind of Processors are we Building Major design constraint: Power. 不采用CPU是因为C"/>
+<meta name="application-name" content="Separator">
+<meta name="apple-mobile-web-app-title" content="Separator">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://maxwellf1.github.io/2021-08-21/" /><link rel="prev" href="https://maxwellf1.github.io/2021-08-14/" /><link rel="next" href="https://maxwellf1.github.io/2021-08-22/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/maxwellf1.github.io\/2021-08-21\/"
+        },"genre": "posts","keywords": "Udacity, CUDA, HPC","wordcount":  2094 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-08-21\/","datePublished": "2021-08-21T21:34:49+08:00","dateModified": "2021-08-23T23:59:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Separator"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="分隔符"><span class="header-title-pre"><i class="fab fa-earlybirds fa-fw" aria-hidden="true"></i></span>Separator</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/2021-08-21/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="分隔符"><span class="header-title-pre"><i class="fab fa-earlybirds fa-fw" aria-hidden="true"></i></span>Separator</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/2021-08-21/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/hpc/"><i class="far fa-folder fa-fw"></i>HPC</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-23">2021-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2094 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-kind-of-processors-are-we-building">What kind of Processors are we Building</a></li>
+    <li><a href="#cuda">CUDA</a>
+      <ul>
+        <li><a href="#a-cuda-program">A CUDA Program</a></li>
+        <li><a href="#what-is-the-gpu-good-at">What is the GPU good at?</a></li>
+      </ul>
+    </li>
+    <li><a href="#gpu-calculation">GPU Calculation</a>
+      <ul>
+        <li><a href="#gpu-code-a-high-level-view">GPU Code: A High-level View</a></li>
+        <li><a href="#squaring-numbers-using-cuda">Squaring Numbers Using CUDA</a>
+          <ul>
+            <li><a href="#configuring-the-kernel-call">Configuring the kernel call</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#map">Map</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#problem-set-1">Problem set 1</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>受功耗限制，不能无限提高单块芯片的频率，不如用很多处理器来进行计算。</p>
+<blockquote>
+<p>Seymour Cray: Would you rather plow a field with two strong oxen or 1024 chickens?</p>
+</blockquote>
+<h2 id="what-kind-of-processors-are-we-building">What kind of Processors are we Building</h2>
+<p>Major design constraint: Power.</p>
+<p>不采用CPU是因为CPU有复杂的控制单元硬件，这允许性能的灵活性，但随着控制硬件变得复杂，耗电量也会增高。不如采用更简单的结构，并将这些重复的简单结构放在一个芯片中，但这需要新的编程模型。</p>
+<p>需要优化什么？</p>
+<p>Latency(time, seconds): 即最大程度缩小执行时间。传统的CPU主要是在这一点，试图最小化每个任务具体消耗的时间。</p>
+<p>Throughout(stuff/time, jobs/hour): 每个单位时间完成的工作量。GPU主要来优化吞吐量。</p>
+<p>GPU的设计特点：</p>
+<ol>
+<li>
+<p>GPU有很多简单计算单位，可以在一起执行大量的计算(GPU一般愿意来用更简单的控制硬件来换取更多的计算单元，这也对程序员的要求更高)。</p>
+</li>
+<li>
+<p>GPU有显式编程模型，在给机器编写程序时，我们知道我们有很多处理器，并且根据这一点进行编程。</p>
+</li>
+<li>
+<p>GPU为吞吐量进行优化，而不是延迟(它愿意接受任何单一个体计算增加的延迟来换取单位时间内进行更多的计算)。</p>
+</li>
+</ol>
+<h2 id="cuda">CUDA</h2>
+<p>如果还是普通的c语言编程，只能在CPU(&ldquo;host&rdquo;)上运行，而CUDA帮助我们在GPU(&ldquo;device&rdquo;)上进行编程。</p>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821230341935.png"
+        title="image-20210821230341935"
+    /></p>
+<p>此图大概说明了CUDA的整体工作结构。注意，GPU只能响应CPU发送数据或接收数据的请求而不能initiate这些请求。</p>
+<h3 id="a-cuda-program">A CUDA Program</h3>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821231005887.png"
+        title="image-20210821231005887"
+    /></p>
+<p>注意图中的通信很可能是有很大开销的，所以要注意编程中的计算和通信的比例。</p>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821231535299.png"
+        title="image-20210821231535299"
+    /></p>
+<h3 id="what-is-the-gpu-good-at">What is the GPU good at?</h3>
+<ol>
+<li>有效的启动大量线程(&ldquo;The GPU does not even get out of bed in the morning for fewer than a thousand threads&rdquo;).</li>
+<li>同时并行运行大量线程。</li>
+</ol>
+<h2 id="gpu-calculation">GPU Calculation</h2>
+<h3 id="gpu-code-a-high-level-view">GPU Code: A High-level View</h3>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822121600138.png"
+        title="image-20210822121600138"
+    /></p>
+<p>我们启动的每一个线程知道自己的编号，即有线程索引。大概流程是先编写在一个线程上运行的kernel，然后会启动许多线程，每个线程独立运行那个内核。</p>
+<h3 id="squaring-numbers-using-cuda">Squaring Numbers Using CUDA</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="n">__global__</span> <span class="kt">void</span> <span class="nf">square</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span> <span class="n">d_out</span><span class="p">,</span> <span class="kt">float</span><span class="o">*</span> <span class="n">d_in</span><span class="p">){</span>
+  <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="n">d_in</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+  <span class="n">d_out</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">f</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">ARRAY_SIZE</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">ARRAY_BYTES</span> <span class="o">=</span> <span class="n">ARRAY_SIZE</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">);</span>
+ 
+  <span class="c1">// generate the input array on the host
+</span><span class="c1"></span>  <span class="kt">float</span> <span class="n">h_in</span><span class="p">[</span><span class="n">ARRAY_SIZE</span><span class="p">];</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">ARRAY_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">h_in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="kt">float</span> <span class="n">h_out</span><span class="p">[</span><span class="n">ARRAY_SIZE</span><span class="p">];</span>
+ 
+  <span class="c1">// declare GPU memory pointers
+</span><span class="c1"></span>  <span class="kt">float</span><span class="o">*</span> <span class="n">d_in</span><span class="p">;</span>
+  <span class="kt">float</span><span class="o">*</span> <span class="n">d_out</span><span class="p">;</span>
+ 
+  <span class="c1">// allocate GPU memory
+</span><span class="c1"></span>  <span class="n">cudaMalloc</span><span class="p">((</span><span class="kt">void</span> <span class="o">**</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">d_in</span><span class="p">,</span> <span class="n">ARRAY_BYTES</span><span class="p">);</span>
+  <span class="n">cudaMalloc</span><span class="p">((</span><span class="kt">void</span> <span class="o">**</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">d_out</span><span class="p">,</span> <span class="n">ARRAY_BYTES</span><span class="p">);</span>
+ 
+  <span class="c1">// transfer the array to GPU
+</span><span class="c1"></span>  <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">h_in</span><span class="p">,</span> <span class="n">ARRAY_BYTES</span><span class="p">,</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
+ 
+  <span class="c1">// launch the kernel
+</span><span class="c1"></span>  <span class="n">square</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="n">ARRAY_SIZE</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_in</span><span class="p">);</span>
+ 
+  <span class="c1">// copy back the result array to the GPU
+</span><span class="c1"></span>  <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">h_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">ARRAY_BYTES</span><span class="p">,</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+ 
+  <span class="c1">// print out the resulting array
+</span><span class="c1"></span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">ARRAY_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%f&#34;</span><span class="p">,</span> <span class="n">h_out</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(((</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">?</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">:</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+ 
+  <span class="c1">// free GPU memory allocation
+</span><span class="c1"></span>  <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_in</span><span class="p">);</span>
+  <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_out</span><span class="p">);</span>
+ 
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+ 
+ 
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这是一个计算平方的程序，但可以大概看出CUDA程序的结构。</p>
+<h4 id="configuring-the-kernel-call">Configuring the kernel call</h4>
+<p>square.cu中我们启动了一个块，这个块含有64个线程。但参数是我们可以自行调整的。</p>
+<p>需要注意，可以同时运行很多块，而且每个块是有支持的线程上限的，例如512,1024。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">Kernel</span><span class="o">&lt;&lt;&lt;</span><span class="n">Grid</span> <span class="n">of</span> <span class="n">Blocks</span><span class="p">,</span> <span class="n">Block</span> <span class="n">of</span> <span class="n">Threads</span><span class="o">&gt;&gt;&gt;</span><span class="p">(...)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>CUDA不仅支持1维的线程块，还支持2、3维的线程块，同样的我们也可以把线程块安排到1、2、3维的网格中(当我们不指定时，默认为1维)。我们需要三维结构时，可以通过如下方式借助dim3格式来初始化(我们不指定时则默认y,z为1)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">dim3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+<span class="n">dim3</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">dim3</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">==</span> <span class="n">w</span>
+<span class="n">square</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="mi">64</span><span class="o">&gt;&gt;&gt;</span> <span class="o">==</span> <span class="n">square</span><span class="o">&lt;&lt;&lt;</span><span class="n">dim3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;&gt;&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所以通用的内核启动可以看成如下三个参数的形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">square</span><span class="o">&lt;&lt;&lt;</span><span class="n">dim3</span><span class="p">(</span><span class="n">bx</span><span class="p">,</span><span class="n">by</span><span class="p">,</span><span class="n">bz</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">),</span> <span class="n">shmem</span><span class="o">&gt;&gt;&gt;</span><span class="p">(...)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中第一个参数是网格块的维数(即网格中有bx×by×bz个线程块)，每个线程块的维数由第二个参数指定，第三个参数是以字节为单位的给每个线程块分配的共享内存量(默认为0)。当我们的问题有多个维度时，拥有多维网格和块是很方便的。</p>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822150630400.png"
+        title="image-20210822150630400"
+    /></p>
+<h2 id="map">Map</h2>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822151938948.png"
+        title="image-20210822151938948"
+    /></p>
+<h2 id="summary">Summary</h2>
+<p><img
+        class="lazyload"
+        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png"
+        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822152210683.png"
+        title="image-20210822152210683"
+    /></p>
+<h2 id="problem-set-1">Problem set 1</h2>
+<p>将彩色照片变为黑白的，这次作业比较简单。但自己花费了很多时间在环境搭建上，没想到Windows居然搞好了，但是不想用过于庞大繁琐的Visual Studio，就花了很多时间在WSL2+CUDA的配置上，但现在还是没有完全配置好环境，只能继续用IDE了。此外，某位大佬用Colab好像配了个jupeternotebook那样的环境，只要根据报错将makefile里面的compute_30改为compute_35就可以正常使用了。</p>
+<p>下面是需要编写的student.cu的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">
+<span class="c1">// Homework 1
+</span><span class="c1">// Color to Greyscale Conversion
+</span><span class="c1"></span>
+<span class="c1">//A common way to represent color images is known as RGBA - the color
+</span><span class="c1">//is specified by how much Red, Grean and Blue is in it.
+</span><span class="c1">//The &#39;A&#39; stands for Alpha and is used for transparency, it will be
+</span><span class="c1">//ignored in this homework.
+</span><span class="c1"></span>
+<span class="c1">//Each channel Red, Blue, Green and Alpha is represented by one byte.
+</span><span class="c1">//Since we are using one byte for each color there are 256 different
+</span><span class="c1">//possible values for each color.  This means we use 4 bytes per pixel.
+</span><span class="c1"></span>
+<span class="c1">//Greyscale images are represented by a single intensity value per pixel
+</span><span class="c1">//which is one byte in size.
+</span><span class="c1"></span>
+<span class="c1">//To convert an image from color to grayscale one simple method is to
+</span><span class="c1">//set the intensity to the average of the RGB channels.  But we will
+</span><span class="c1">//use a more sophisticated method that takes into account how the eye
+</span><span class="c1">//perceives color and weights the channels unequally.
+</span><span class="c1"></span>
+<span class="c1">//The eye responds most strongly to green followed by red and then blue.
+</span><span class="c1">//The NTSC (National Television System Committee) recommends the following
+</span><span class="c1">//formula for color to greyscale conversion:
+</span><span class="c1"></span>
+<span class="c1">//I = .299f * R + .587f * G + .114f * B
+</span><span class="c1"></span>
+<span class="c1">//Notice the trailing f&#39;s on the numbers which indicate that they are
+</span><span class="c1">//single precision floating point constants and not double precision
+</span><span class="c1">//constants.
+</span><span class="c1"></span>
+<span class="c1">//You should fill in the kernel as well as set the block and grid sizes
+</span><span class="c1">//so that the entire image is processed.
+</span><span class="c1"></span>
+<span class="cp">#include</span> <span class="cpf">&#34;utils.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="n">__global__</span>
+<span class="kt">void</span> <span class="nf">rgba_to_greyscale</span><span class="p">(</span><span class="k">const</span> <span class="n">uchar4</span><span class="o">*</span> <span class="k">const</span> <span class="n">rgbaImage</span><span class="p">,</span>
+                       <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">greyImage</span><span class="p">,</span>
+                       <span class="kt">int</span> <span class="n">numRows</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numCols</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">//TODO
+</span><span class="c1"></span>  <span class="c1">//Fill in the kernel to convert from color to greyscale
+</span><span class="c1"></span>  <span class="c1">//the mapping from components of a uchar4 to RGBA is:
+</span><span class="c1"></span>  <span class="c1">// .x -&gt; R ; .y -&gt; G ; .z -&gt; B ; .w -&gt; A
+</span><span class="c1"></span>  <span class="c1">//
+</span><span class="c1"></span>  <span class="c1">//首先找到本线程对应需要处理的像素
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">Idx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">numCols</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
+  <span class="n">uchar4</span> <span class="n">rgba</span> <span class="o">=</span> <span class="n">rgbaImage</span><span class="p">[</span><span class="n">Idx</span><span class="p">];</span>
+  <span class="c1">//The output (greyImage) at each pixel should be the result of
+</span><span class="c1"></span>  <span class="c1">//applying the formula: output = .299f * R + .587f * G + .114f * B;
+</span><span class="c1"></span>  <span class="c1">//Note: We will be ignoring the alpha channel for this conversion
+</span><span class="c1"></span>  <span class="n">greyImage</span><span class="p">[</span><span class="n">Idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.299f</span><span class="o">*</span><span class="n">rgba</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.587f</span><span class="o">*</span><span class="n">rgba</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.114f</span> <span class="o">*</span> <span class="n">rgba</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+  <span class="c1">//First create a mapping from the 2D block and grid locations
+</span><span class="c1"></span>  <span class="c1">//to an absolute 2D location in the image, then use that to
+</span><span class="c1"></span>  <span class="c1">//calculate a 1D offset
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">your_rgba_to_greyscale</span><span class="p">(</span><span class="k">const</span> <span class="n">uchar4</span> <span class="o">*</span> <span class="k">const</span> <span class="n">h_rgbaImage</span><span class="p">,</span> <span class="n">uchar4</span> <span class="o">*</span> <span class="k">const</span> <span class="n">d_rgbaImage</span><span class="p">,</span>
+                            <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">d_greyImage</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">numRows</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">numCols</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">//You must fill in the correct sizes for the blockSize and gridSize
+</span><span class="c1"></span>  <span class="c1">//currently only one block with one thread is being launched
+</span><span class="c1"></span>  <span class="k">const</span> <span class="n">dim3</span> <span class="n">blockSize</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//TODO
+</span><span class="c1"></span>  <span class="k">const</span> <span class="n">dim3</span> <span class="n">gridSize</span><span class="p">(</span> <span class="n">floor</span><span class="p">(</span><span class="n">numCols</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">numRows</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//TODO
+</span><span class="c1"></span>  <span class="n">rgba_to_greyscale</span><span class="o">&lt;&lt;&lt;</span><span class="n">gridSize</span><span class="p">,</span> <span class="n">blockSize</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_rgbaImage</span><span class="p">,</span> <span class="n">d_greyImage</span><span class="p">,</span> <span class="n">numRows</span><span class="p">,</span> <span class="n">numCols</span><span class="p">);</span>
+
+  <span class="n">cudaDeviceSynchronize</span><span class="p">();</span> <span class="n">checkCudaErrors</span><span class="p">(</span><span class="n">cudaGetLastError</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-08-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2021-08-21/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model" data-hashtags="Udacity,CUDA,HPC"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="https://maxwellf1.github.io/2021-08-21/" data-hashtag="Udacity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://maxwellf1.github.io/2021-08-21/" data-title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/udacity/">Udacity</a>,&nbsp;<a href="/tags/cuda/">CUDA</a>,&nbsp;<a href="/tags/hpc/">HPC</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2021-08-14/" class="prev" rel="prev" title="3Blue1Brown-Neural Networks"><i class="fas fa-angle-left fa-fw"></i>3Blue1Brown-Neural Networks</a>
+            <a href="/2021-08-22/" class="next" rel="next" title="CUDA Environment Configuration">CUDA Environment Configuration<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Separator</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"VAN0Y7S9D7","algoliaIndex":"MaxwellF1.github.io","algoliaSearchKey":"4ef882f6c66e278079c983bc04ea3826","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"sharerjs":true};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+</body>
+
+</html>
