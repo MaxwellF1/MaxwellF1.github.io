@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://maxwellf1.github.io/2021-08-21/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-21T21:34:49+08:00" />
-<meta property="article:modified_time" content="2021-08-23T23:59:20+08:00" /><meta property="og:site_name" content="分隔符" />
+<meta property="article:modified_time" content="2021-08-24T23:00:17+08:00" /><meta property="og:site_name" content="分隔符" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
@@ -33,8 +33,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/maxwellf1.github.io\/2021-08-21\/"
-        },"genre": "posts","keywords": "Udacity, CUDA, HPC","wordcount":  2094 ,
-        "url": "https:\/\/maxwellf1.github.io\/2021-08-21\/","datePublished": "2021-08-21T21:34:49+08:00","dateModified": "2021-08-23T23:59:20+08:00","publisher": {
+        },"genre": "posts","keywords": "Udacity, CUDA, HPC","wordcount":  2709 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-08-21\/","datePublished": "2021-08-21T21:34:49+08:00","dateModified": "2021-08-24T23:00:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -135,8 +135,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/hpc/"><i class="far fa-folder fa-fw"></i>HPC</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-23">2021-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2094 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-24">2021-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2709 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -164,6 +164,11 @@
     <li><a href="#map">Map</a></li>
     <li><a href="#summary">Summary</a></li>
     <li><a href="#problem-set-1">Problem set 1</a></li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#1-about-threadidx-blockidx--blockdim-and-griddim">1. about threadIdx, blockIdx , blockDim and gridDim</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>受功耗限制，不能无限提高单块芯片的频率，不如用很多处理器来进行计算。</p>
@@ -192,30 +197,30 @@
 <p>如果还是普通的c语言编程，只能在CPU(&ldquo;host&rdquo;)上运行，而CUDA帮助我们在GPU(&ldquo;device&rdquo;)上进行编程。</p>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821230341935.png 2x"
+        data-src="../../../images/2021/08/cuda_program_overview.png"
+        data-srcset="../../../images/2021/08/cuda_program_overview.png, ../../../images/2021/08/cuda_program_overview.png 1.5x, ../../../images/2021/08/cuda_program_overview.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821230341935.png"
-        title="image-20210821230341935"
+        alt="../../../images/2021/08/cuda_program_overview.png"
+        title="image"
     /></p>
 <p>此图大概说明了CUDA的整体工作结构。注意，GPU只能响应CPU发送数据或接收数据的请求而不能initiate这些请求。</p>
 <h3 id="a-cuda-program">A CUDA Program</h3>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231005887.png 2x"
+        data-src="../../../images/2021/08/typical_gpu_program.png"
+        data-srcset="../../../images/2021/08/typical_gpu_program.png, ../../../images/2021/08/typical_gpu_program.png 1.5x, ../../../images/2021/08/typical_gpu_program.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821231005887.png"
-        title="image-20210821231005887"
+        alt="../../../images/2021/08/typical_gpu_program.png"
+        title="image"
     /></p>
 <p>注意图中的通信很可能是有很大开销的，所以要注意编程中的计算和通信的比例。</p>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210821231535299.png 2x"
+        data-src="../../../images/2021/08/gpu_computation_big_idea.png"
+        data-srcset="../../../images/2021/08/gpu_computation_big_idea.png, ../../../images/2021/08/gpu_computation_big_idea.png 1.5x, ../../../images/2021/08/gpu_computation_big_idea.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821231535299.png"
-        title="image-20210821231535299"
+        alt="../../../images/2021/08/gpu_computation_big_idea.png"
+        title="image"
     /></p>
 <h3 id="what-is-the-gpu-good-at">What is the GPU good at?</h3>
 <ol>
@@ -226,10 +231,10 @@
 <h3 id="gpu-code-a-high-level-view">GPU Code: A High-level View</h3>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822121600138.png 2x"
+        data-src="../../../images/2021/08/gpucode_highlevel_view.png"
+        data-srcset="../../../images/2021/08/gpucode_highlevel_view.png, ../../../images/2021/08/gpucode_highlevel_view.png 1.5x, ../../../images/2021/08/gpucode_highlevel_view.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822121600138.png"
+        alt="../../../images/2021/08/gpucode_highlevel_view.png"
         title="image-20210822121600138"
     /></p>
 <p>我们启动的每一个线程知道自己的编号，即有线程索引。大概流程是先编写在一个线程上运行的kernel，然后会启动许多线程，每个线程独立运行那个内核。</p>
@@ -377,32 +382,32 @@
 </div><p>其中第一个参数是网格块的维数(即网格中有bx×by×bz个线程块)，每个线程块的维数由第二个参数指定，第三个参数是以字节为单位的给每个线程块分配的共享内存量(默认为0)。当我们的问题有多个维度时，拥有多维网格和块是很方便的。</p>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822150630400.png 2x"
+        data-src="../../../images/2021/08/configuring_kernel.png"
+        data-srcset="../../../images/2021/08/configuring_kernel.png, ../../../images/2021/08/configuring_kernel.png 1.5x, ../../../images/2021/08/configuring_kernel.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822150630400.png"
+        alt="../../../images/2021/08/configuring_kernel.png"
         title="image-20210822150630400"
     /></p>
 <h2 id="map">Map</h2>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822151938948.png 2x"
+        data-src="../../../images/2021/08/map_unit1.png"
+        data-srcset="../../../images/2021/08/map_unit1.png, ../../../images/2021/08/map_unit1.png 1.5x, ../../../images/2021/08/map_unit1.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822151938948.png"
+        alt="../../../images/2021/08/map_unit1.png"
         title="image-20210822151938948"
     /></p>
 <h2 id="summary">Summary</h2>
 <p><img
         class="lazyload"
-        data-src="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png"
-        data-srcset="C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png 1.5x, C:%5cUsers%5cMaxwell%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20210822152210683.png 2x"
+        data-src="../../../images/2021/08/summary_unit1.png"
+        data-srcset="../../../images/2021/08/summary_unit1.png, ../../../images/2021/08/summary_unit1.png 1.5x, ../../../images/2021/08/summary_unit1.png 2x"
         data-sizes="auto"
-        alt="C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822152210683.png"
+        alt="../../../images/2021/08/summary_unit1.png"
         title="image-20210822152210683"
     /></p>
 <h2 id="problem-set-1">Problem set 1</h2>
-<p>将彩色照片变为黑白的，这次作业比较简单。但自己花费了很多时间在环境搭建上，没想到Windows居然搞好了，但是不想用过于庞大繁琐的Visual Studio，就花了很多时间在WSL2+CUDA的配置上，但现在还是没有完全配置好环境，只能继续用IDE了。此外，某位大佬用Colab好像配了个jupeternotebook那样的环境，只要根据报错将makefile里面的compute_30改为compute_35就可以正常使用了。</p>
+<p>将彩色照片变为黑白的，这次作业比较简单。但自己花费了很多时间在环境搭建上，没想到Windows居然搞好了，但是不想用过于庞大繁琐的Visual Studio，就花了很多时间在WSL2+CUDA的配置上，但现在还是没有完全配置好环境，只能继续用IDE了。此外，某位大佬用Colab好像配了个jupeternotebook那样的<a href="https://github.com/depctg/udacity-cs344-colab" target="_blank" rel="noopener noreffer">环境</a>，只要根据报错将makefile里面的compute_30改为compute_35就可以正常使用了。</p>
 <p>下面是需要编写的student.cu的代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -477,6 +482,7 @@
 </span><span class="lnt">69
 </span><span class="lnt">70
 </span><span class="lnt">71
+</span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">
@@ -528,27 +534,225 @@
 </span><span class="c1"></span>  <span class="c1">//首先找到本线程对应需要处理的像素
 </span><span class="c1"></span>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">Idx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">numCols</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
-  <span class="n">uchar4</span> <span class="n">rgba</span> <span class="o">=</span> <span class="n">rgbaImage</span><span class="p">[</span><span class="n">Idx</span><span class="p">];</span>
-  <span class="c1">//The output (greyImage) at each pixel should be the result of
-</span><span class="c1"></span>  <span class="c1">//applying the formula: output = .299f * R + .587f * G + .114f * B;
-</span><span class="c1"></span>  <span class="c1">//Note: We will be ignoring the alpha channel for this conversion
-</span><span class="c1"></span>  <span class="n">greyImage</span><span class="p">[</span><span class="n">Idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.299f</span><span class="o">*</span><span class="n">rgba</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.587f</span><span class="o">*</span><span class="n">rgba</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.114f</span> <span class="o">*</span> <span class="n">rgba</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">Idx</span> <span class="o">&lt;</span> <span class="n">numCols</span> <span class="o">*</span> <span class="n">numRows</span><span class="p">){</span>
+    <span class="n">uchar4</span> <span class="n">rgba</span> <span class="o">=</span> <span class="n">rgbaImage</span><span class="p">[</span><span class="n">Idx</span><span class="p">];</span>
+    <span class="c1">//The output (greyImage) at each pixel should be the result of
+</span><span class="c1"></span>    <span class="c1">//applying the formula: output = .299f * R + .587f * G + .114f * B;
+</span><span class="c1"></span>    <span class="c1">//Note: We will be ignoring the alpha channel for this conversion
+</span><span class="c1"></span>    <span class="n">greyImage</span><span class="p">[</span><span class="n">Idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.299f</span><span class="o">*</span><span class="n">rgba</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.587f</span><span class="o">*</span><span class="n">rgba</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.114f</span> <span class="o">*</span> <span class="n">rgba</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+  <span class="p">}</span>
   <span class="c1">//First create a mapping from the 2D block and grid locations
 </span><span class="c1"></span>  <span class="c1">//to an absolute 2D location in the image, then use that to
 </span><span class="c1"></span>  <span class="c1">//calculate a 1D offset
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">your_rgba_to_greyscale</span><span class="p">(</span><span class="k">const</span> <span class="n">uchar4</span> <span class="o">*</span> <span class="k">const</span> <span class="n">h_rgbaImage</span><span class="p">,</span> <span class="n">uchar4</span> <span class="o">*</span> <span class="k">const</span> <span class="n">d_rgbaImage</span><span class="p">,</span>
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="n">your_rgba_to_greyscale</span><span class="p">(</span><span class="k">const</span> <span class="n">uchar4</span> <span class="o">*</span> <span class="k">const</span> <span class="n">h_rgbaImage</span><span class="p">,</span> <span class="n">uchar4</span> <span class="o">*</span> <span class="k">const</span> <span class="n">d_rgbaImage</span><span class="p">,</span>
                             <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">d_greyImage</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">numRows</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">numCols</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">//You must fill in the correct sizes for the blockSize and gridSize
 </span><span class="c1"></span>  <span class="c1">//currently only one block with one thread is being launched
 </span><span class="c1"></span>  <span class="k">const</span> <span class="n">dim3</span> <span class="n">blockSize</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//TODO
-</span><span class="c1"></span>  <span class="k">const</span> <span class="n">dim3</span> <span class="n">gridSize</span><span class="p">(</span> <span class="n">floor</span><span class="p">(</span><span class="n">numCols</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">numRows</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//TODO
+</span><span class="c1"></span>  <span class="k">const</span> <span class="n">dim3</span> <span class="n">gridSize</span><span class="p">(</span> <span class="p">(</span><span class="n">numCols</span><span class="o">+</span><span class="n">blockSize</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">blockSize</span><span class="p">.</span><span class="n">x</span><span class="p">,(</span><span class="n">numRows</span><span class="o">+</span><span class="n">blockSize</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">blockSize</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//TODO
+</span><span class="c1"></span>  <span class="c1">//const dim3 gridSize( floor(numCols/16)+1,floor(numRows/16)+1, 1);  //TODO
 </span><span class="c1"></span>  <span class="n">rgba_to_greyscale</span><span class="o">&lt;&lt;&lt;</span><span class="n">gridSize</span><span class="p">,</span> <span class="n">blockSize</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_rgbaImage</span><span class="p">,</span> <span class="n">d_greyImage</span><span class="p">,</span> <span class="n">numRows</span><span class="p">,</span> <span class="n">numCols</span><span class="p">);</span>
 
   <span class="n">cudaDeviceSynchronize</span><span class="p">();</span> <span class="n">checkCudaErrors</span><span class="p">(</span><span class="n">cudaGetLastError</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="exercise">Exercise</h2>
+<h3 id="1-about-threadidx-blockidx--blockdim-and-griddim">1. about threadIdx, blockIdx , blockDim and gridDim</h3>
+<p>关于这些参数之间的关系，启动kernel的时候我们要指定blockSize和gridSize, 填充的时候应该是按照x, y, z的顺序(<a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#thread-hierarchy" target="_blank" rel="noopener noreffer">官方文档</a>上的图好像是这样的)。</p>
+<p><img
+        class="lazyload"
+        data-src="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png"
+        data-srcset="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png, https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png 1.5x, https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png 2x"
+        data-sizes="auto"
+        alt="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png"
+        title="Grid of Thread Blocks."
+    /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">gridDim</span><span class="err">：</span> <span class="err">指定</span><span class="n">grid维度</span><span class="err">，类型为</span><span class="n">dim3</span>
+
+<span class="n">blockDIm</span><span class="err">：</span> <span class="err">指定</span><span class="n">block维度</span><span class="err">，类型为</span><span class="n">dim3</span>
+
+<span class="nl">blockIdx</span><span class="p">:</span> <span class="err">指定</span><span class="n">grid内block索引号</span><span class="err">，类型为</span><span class="n">uint3</span>
+
+<span class="n">threadIdx</span> <span class="err">指定</span><span class="n">block内thread索引号</span><span class="err">，类型为</span><span class="n">uint3</span>
+
+<span class="n">warpsize</span><span class="err">：</span> <span class="err">指定</span><span class="n">warp内thread数量</span><span class="err">，类型为</span><span class="kt">int</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>The index of a thread and its thread ID relate to each other in a straightforward way: For a one-dimensional block, they are the same; for a two-dimensional block of size (Dx, Dy),the thread ID of a thread of index (x, y) is (x + y Dx); for a three-dimensional block of size (Dx, Dy, Dz), the thread ID of a thread of index (x, y, z) is (x + y Dx + z Dx Dy).</p>
+<p>下面作为<a href="https://computing.calvin.edu/" target="_blank" rel="noopener noreffer">练习</a>，来求各种情况下的真正的threadIdx：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 1D grid of 1D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_1D_1D</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 1D grid of 2D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_1D_2D</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 1D grid of 3D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_1D_3D</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">z</span> <span class="o">+</span> 
+           <span class="n">threadIdx</span><span class="p">.</span><span class="n">z</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> 
+           <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> 
+           <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 2D grid of 1D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_2D_1D</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">threadId</span> <span class="o">=</span> <span class="n">blockId</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">threadId</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 2D grid of 2D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_2D_2D</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">threadId</span> <span class="o">=</span> <span class="n">blockId</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">threadId</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 2D grid of 3D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_2D_3D</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">threadId</span> <span class="o">=</span> <span class="n">blockId</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">z</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">z</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">threadId</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 3D grid of 1D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_3D_1D</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">z</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span>
+        		  <span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+                  <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">threadId</span> <span class="o">=</span> <span class="n">blockId</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">threadId</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 3D grid of 2D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_3D_2D</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">z</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span>
+        		  <span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+                  <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">threadId</span> <span class="o">=</span> <span class="n">blockId</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">threadId</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 3D grid of 3D blocks
+</span><span class="c1"></span><span class="n">__device__</span>
+    <span class="kt">int</span> <span class="nf">getGlobalIdx_3D_1D</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">z</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span>
+        		  <span class="n">blockIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+                  <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">threadId</span> <span class="o">=</span> <span class="n">blockId</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">z</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">z</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">y</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">+</span>
+        		   <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">threadId</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -556,7 +760,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-08-23</span>
+                <span>更新于 2021-08-24</span>
             </div>
             <div class="post-info-license"></div>
         </div>

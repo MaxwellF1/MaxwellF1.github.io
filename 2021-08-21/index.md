@@ -31,17 +31,17 @@ GPU的设计特点：
 
 如果还是普通的c语言编程，只能在CPU("host")上运行，而CUDA帮助我们在GPU("device")上进行编程。
 
-![image-20210821230341935](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821230341935.png)
+![image](../../../images/2021/08/cuda_program_overview.png)
 
 此图大概说明了CUDA的整体工作结构。注意，GPU只能响应CPU发送数据或接收数据的请求而不能initiate这些请求。
 
 ### A CUDA Program
 
-![image-20210821231005887](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821231005887.png)
+![image](../../../images/2021/08/typical_gpu_program.png)
 
 注意图中的通信很可能是有很大开销的，所以要注意编程中的计算和通信的比例。
 
-![image-20210821231535299](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210821231535299.png)
+![image](../../../images/2021/08/gpu_computation_big_idea.png)
 
 ### What is the GPU good at?
 
@@ -52,7 +52,7 @@ GPU的设计特点：
 
 ### GPU Code: A High-level View
 
-![image-20210822121600138](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822121600138.png)
+![image-20210822121600138](../../../images/2021/08/gpucode_highlevel_view.png)
 
 我们启动的每一个线程知道自己的编号，即有线程索引。大概流程是先编写在一个线程上运行的kernel，然后会启动许多线程，每个线程独立运行那个内核。
 
@@ -139,19 +139,19 @@ square<<<dim3(bx,by,bz), dim3(tx,ty,tz), shmem>>>(...)
 
 其中第一个参数是网格块的维数(即网格中有bx×by×bz个线程块)，每个线程块的维数由第二个参数指定，第三个参数是以字节为单位的给每个线程块分配的共享内存量(默认为0)。当我们的问题有多个维度时，拥有多维网格和块是很方便的。
 
-![image-20210822150630400](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822150630400.png)
+![image-20210822150630400](../../../images/2021/08/configuring_kernel.png)
 
 ## Map
 
-![image-20210822151938948](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822151938948.png)
+![image-20210822151938948](../../../images/2021/08/map_unit1.png)
 
 ## Summary
 
-![image-20210822152210683](C:\Users\Maxwell\AppData\Roaming\Typora\typora-user-images\image-20210822152210683.png)
+![image-20210822152210683](../../../images/2021/08/summary_unit1.png)
 
 ## Problem set 1
 
-将彩色照片变为黑白的，这次作业比较简单。但自己花费了很多时间在环境搭建上，没想到Windows居然搞好了，但是不想用过于庞大繁琐的Visual Studio，就花了很多时间在WSL2+CUDA的配置上，但现在还是没有完全配置好环境，只能继续用IDE了。此外，某位大佬用Colab好像配了个jupeternotebook那样的环境，只要根据报错将makefile里面的compute_30改为compute_35就可以正常使用了。
+将彩色照片变为黑白的，这次作业比较简单。但自己花费了很多时间在环境搭建上，没想到Windows居然搞好了，但是不想用过于庞大繁琐的Visual Studio，就花了很多时间在WSL2+CUDA的配置上，但现在还是没有完全配置好环境，只能继续用IDE了。此外，某位大佬用Colab好像配了个jupeternotebook那样的[环境](https://github.com/depctg/udacity-cs344-colab)，只要根据报错将makefile里面的compute_30改为compute_35就可以正常使用了。
 
 下面是需要编写的student.cu的代码：
 
@@ -205,16 +205,16 @@ void rgba_to_greyscale(const uchar4* const rgbaImage,
   //首先找到本线程对应需要处理的像素
   int x = threadIdx.x + blockDim.x*blockIdx.x;
   int y = threadIdx.y + blockDim.y*blockIdx.y;
-  int Idx = x + numCols*y;
-  uchar4 rgba = rgbaImage[Idx];
-  //The output (greyImage) at each pixel should be the result of
-  //applying the formula: output = .299f * R + .587f * G + .114f * B;
-  //Note: We will be ignoring the alpha channel for this conversion
-  greyImage[Idx] = 0.299f*rgba.x + 0.587f*rgba.y + 0.114f * rgba.z;
+  if(Idx < numCols * numRows){
+    uchar4 rgba = rgbaImage[Idx];
+    //The output (greyImage) at each pixel should be the result of
+    //applying the formula: output = .299f * R + .587f * G + .114f * B;
+    //Note: We will be ignoring the alpha channel for this conversion
+    greyImage[Idx] = 0.299f*rgba.x + 0.587f*rgba.y + 0.114f * rgba.z;
+  }
   //First create a mapping from the 2D block and grid locations
   //to an absolute 2D location in the image, then use that to
   //calculate a 1D offset
-}
 
 void your_rgba_to_greyscale(const uchar4 * const h_rgbaImage, uchar4 * const d_rgbaImage,
                             unsigned char* const d_greyImage, size_t numRows, size_t numCols)
@@ -222,13 +222,116 @@ void your_rgba_to_greyscale(const uchar4 * const h_rgbaImage, uchar4 * const d_r
   //You must fill in the correct sizes for the blockSize and gridSize
   //currently only one block with one thread is being launched
   const dim3 blockSize(16, 16, 1);  //TODO
-  const dim3 gridSize( floor(numCols/16)+1,floor(numRows/16)+1, 1);  //TODO
+  const dim3 gridSize( (numCols+blockSize.x-1)/blockSize.x,(numRows+blockSize.y-1)/blockSize.y, 1);  //TODO
+  //const dim3 gridSize( floor(numCols/16)+1,floor(numRows/16)+1, 1);  //TODO
   rgba_to_greyscale<<<gridSize, blockSize>>>(d_rgbaImage, d_greyImage, numRows, numCols);
 
   cudaDeviceSynchronize(); checkCudaErrors(cudaGetLastError());
 }
 ```
 
+## Exercise
 
+### 1. about threadIdx, blockIdx , blockDim and gridDim
+
+关于这些参数之间的关系，启动kernel的时候我们要指定blockSize和gridSize, 填充的时候应该是按照x, y, z的顺序([官方文档](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#thread-hierarchy)上的图好像是这样的)。
+
+![Grid of Thread Blocks.](https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png)
+
+```c
+gridDim： 指定grid维度，类型为dim3
+
+blockDIm： 指定block维度，类型为dim3
+
+blockIdx: 指定grid内block索引号，类型为uint3
+
+threadIdx 指定block内thread索引号，类型为uint3
+
+warpsize： 指定warp内thread数量，类型为int
+
+```
+
+The index of a thread and its thread ID relate to each other in a straightforward way: For a one-dimensional block, they are the same; for a two-dimensional block of size (Dx, Dy),the thread ID of a thread of index (x, y) is (x + y Dx); for a three-dimensional block of size (Dx, Dy, Dz), the thread ID of a thread of index (x, y, z) is (x + y Dx + z Dx Dy).
+
+下面作为[练习](https://computing.calvin.edu/)，来求各种情况下的真正的threadIdx：
+
+```c
+// 1D grid of 1D blocks
+__device__
+    int getGlobalIdx_1D_1D(){
+    return blockIdx.x*blockDim.x + threadIdx.x;
+}
+// 1D grid of 2D blocks
+__device__
+    int getGlobalIdx_1D_2D(){
+    return blockIdx.x*blockDim.x*blockDim.y + threadIdx.y*blockDim.x + threadIdx.x;
+}
+// 1D grid of 3D blocks
+__device__
+    int getGlobalIdx_1D_3D(){
+    return blockIdx.x*blockDim.x*blockDim.y*blockDim.z + 
+           threadIdx.z*blockDim.x*blockDim.y + 
+           threadIdx.y*blockDim.x + 
+           threadIdx.x;
+}
+// 2D grid of 1D blocks
+__device__
+    int getGlobalIdx_2D_1D(){
+    int blockId = blockIdx.y*gridDim.x + blockIdx.x;
+    int threadId = blockId*blockDim.x + threadIdx.x;
+    return threadId;
+}
+// 2D grid of 2D blocks
+__device__
+    int getGlobalIdx_2D_2D(){
+    int blockId = blockIdx.y*gridDim.x + blockIdx.x;
+    int threadId = blockId*blockDim.x*blockDim.y+
+        		   threadIdx.y*blockDim.x+
+        		   threadIdx.x;
+    return threadId;
+}
+// 2D grid of 3D blocks
+__device__
+    int getGlobalIdx_2D_3D(){
+    int blockId = blockIdx.y*gridDim.x + blockIdx.x;
+    int threadId = blockId*blockDim.x*blockDim.y*blockDim.z+
+        		   threadIdx.z*blockDim.x*blockDim.y+
+        		   threadIdx.y*blockDim.x+
+        		   threadIdx.x;
+    return threadId;
+}
+// 3D grid of 1D blocks
+__device__
+    int getGlobalIdx_3D_1D(){
+    int blockId = blockIdx.z*gridDim.x*gridDim.y +
+        		  blockIdx.y*gridDim.x+
+                  blockIdx.x;
+    int threadId = blockId*blockDim.x + threadIdx.x;
+    return threadId;
+}
+// 3D grid of 2D blocks
+__device__
+    int getGlobalIdx_3D_2D(){
+    int blockId = blockIdx.z*gridDim.x*gridDim.y +
+        		  blockIdx.y*gridDim.x+
+                  blockIdx.x;
+    int threadId = blockId*blockDim.x*blockDim.y+
+        		   threadIdx.y*blockDim.x+
+        		   threadIdx.x;
+    return threadId;
+}
+// 3D grid of 3D blocks
+__device__
+    int getGlobalIdx_3D_1D(){
+    int blockId = blockIdx.z*gridDim.x*gridDim.y +
+        		  blockIdx.y*gridDim.x+
+                  blockIdx.x;
+    int threadId = blockId*blockDim.x*blockDim.y*blockDim.z+
+        		   threadIdx.z*blockDim.x*blockDim.y+
+        		   threadIdx.y*blockDim.x+
+        		   threadIdx.x;
+    return threadId;
+}
+```
 
 
