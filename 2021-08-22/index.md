@@ -45,6 +45,27 @@
 
 
 
+## 一些问题
+
+1. **明明安装好了CUDA，却无法使用NVCC的相关命令：**
+
+   这通常是没有配置好环境变量导致的。
+
+   例如在Linux系统下，可以打开~/.bahsrc，在其中添加环境变量
+
+   ```bash
+   export LD_LIBRARY_PATH=/usr/local/cuda/lib
+   export PATH=$PATH:/usr/local/cuda/bin
+   ```
+
+   并执行`source ~/.bashrc`使得环境变量生效。
+
+   
+
+2. 
+
+
+
 ## 参考文献
 
 1. [Windows 下在命令行编译 CUDA 文件](http://iliutong.cn/2019/01/20/nvcc-cu-file-in-console-in-windows/)

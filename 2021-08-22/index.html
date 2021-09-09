@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://maxwellf1.github.io/2021-08-22/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-22T19:39:00+08:00" />
-<meta property="article:modified_time" content="2021-08-23T23:59:59+08:00" /><meta property="og:site_name" content="分隔符" />
+<meta property="article:modified_time" content="2021-09-09T18:00:05+08:00" /><meta property="og:site_name" content="分隔符" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
@@ -33,8 +33,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/maxwellf1.github.io\/2021-08-22\/"
-        },"genre": "posts","keywords": "CUDA, Environment","wordcount":  1031 ,
-        "url": "https:\/\/maxwellf1.github.io\/2021-08-22\/","datePublished": "2021-08-22T19:39:00+08:00","dateModified": "2021-08-23T23:59:59+08:00","publisher": {
+        },"genre": "posts","keywords": "CUDA, Environment","wordcount":  1146 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-08-22\/","datePublished": "2021-08-22T19:39:00+08:00","dateModified": "2021-09-09T18:00:05+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -135,7 +135,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/cuda/"><i class="far fa-folder fa-fw"></i>CUDA</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-22">2021-08-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-23">2021-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1031 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-22">2021-08-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1146 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -150,6 +150,7 @@
       </ul>
     </li>
     <li><a href="#wsl">WSL</a></li>
+    <li><a href="#一些问题">一些问题</a></li>
     <li><a href="#参考文献">参考文献</a></li>
   </ul>
 </nav></div>
@@ -205,6 +206,26 @@ C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class=
 <h2 id="wsl">WSL</h2>
 <p>由于想用到linux相关的命令行，而且觉得从头开始编写和编译能够理解的更清楚，但电脑上又没有双系统。我从CUDA的官方文档中看到了对WSL的支持，就去网上搜索了相关的教程。一开始安装好了CUDA，但是nvidia-smi无法访问显卡，以为是WSL设置的原因，搞了好久。最后又重读了一遍CUDA的官方文档发现对Windows系统的版本有要求，最好是20145以上的，但我查看自己的windows10系统，居然只是19xxx，而且检查过后居然没有可用的更新。</p>
 <p>后来发现必须加入Windows预览体验计划才能更新这些版本，自己加入并选择DEV Channel后居然自动给我更新了win11&hellip;只能硬着头皮上了，感觉自己的电脑配置不一定够用，安好之后又按照官方文档重来一遍，这次可以正常在WSL访问到GPU并使用CUDA了。不得不说win11长得属实有点像MACOS啊，而且这次警示我一定不要先瞎去网上找资料，<strong>RTFM</strong>。</p>
+<h2 id="一些问题">一些问题</h2>
+<ol>
+<li>
+<p><strong>明明安装好了CUDA，却无法使用NVCC的相关命令：</strong></p>
+<p>这通常是没有配置好环境变量导致的。</p>
+<p>例如在Linux系统下，可以打开~/.bahsrc，在其中添加环境变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/cuda/lib
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/cuda/bin
+</code></pre></td></tr></table>
+</div>
+</div><p>并执行<code>source ~/.bashrc</code>使得环境变量生效。</p>
+</li>
+<li></li>
+</ol>
 <h2 id="参考文献">参考文献</h2>
 <ol>
 <li><a href="http://iliutong.cn/2019/01/20/nvcc-cu-file-in-console-in-windows/" target="_blank" rel="noopener noreffer">Windows 下在命令行编译 CUDA 文件</a></li>
@@ -214,7 +235,7 @@ C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class=
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-08-23</span>
+                <span>更新于 2021-09-09</span>
             </div>
             <div class="post-info-license"></div>
         </div>
