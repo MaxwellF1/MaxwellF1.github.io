@@ -4,9 +4,23 @@
         <link>https://maxwellf1.github.io/</link>
         <description>Separator</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
-            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Sun, 22 Aug 2021 19:39:00 &#43;0800</lastBuildDate>
+            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Thu, 09 Sep 2021 12:21:16 &#43;0800</lastBuildDate>
             <atom:link href="https://maxwellf1.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>WSL相关操作</title>
+    <link>https://maxwellf1.github.io/2021-09-09/</link>
+    <pubDate>Thu, 09 Sep 2021 12:21:16 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://maxwellf1.github.io/2021-09-09/</guid>
+    <description><![CDATA[前一段在新闻上看到了许多WSL2的新特性，于是就加入了Windows的开发者计划更新了一下dev版本的Win11，也学着玩玩WSL。因为感觉]]></description>
+</item><item>
+    <title>Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns</title>
+    <link>https://maxwellf1.github.io/2021-08-28/</link>
+    <pubDate>Sat, 28 Aug 2021 17:18:32 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://maxwellf1.github.io/2021-08-28/</guid>
+    <description><![CDATA[对于新的高性能架构，通常能源效益应该放在设计的第一位，之后要紧接考虑的是可编程性和应用范围。(performance goal: extremscale, 10^18)。 Communication Patterns 并]]></description>
+</item><item>
     <title>CUDA Environment Configuration</title>
     <link>https://maxwellf1.github.io/2021-08-22/</link>
     <pubDate>Sun, 22 Aug 2021 19:39:00 &#43;0800</pubDate><author>

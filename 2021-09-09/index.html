@@ -5,36 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">CUDA Environment Configuration - 分隔符</title><meta name="Description" content="Separator"><meta property="og:title" content="CUDA Environment Configuration" />
-<meta property="og:description" content="Windows 在Windows上安装CUDA只需要根据官网上的指南安装对应的版本并添加到系统环境变量里就可以正常使用了。但是需要配合Visual Stud" />
+    <title class="pjax-title">WSL相关操作 - 分隔符</title><meta name="Description" content="Separator"><meta property="og:title" content="WSL相关操作" />
+<meta property="og:description" content="前一段在新闻上看到了许多WSL2的新特性，于是就加入了Windows的开发者计划更新了一下dev版本的Win11，也学着玩玩WSL。因为感觉" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://maxwellf1.github.io/2021-08-22/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-22T19:39:00+08:00" />
-<meta property="article:modified_time" content="2021-08-23T23:59:59+08:00" /><meta property="og:site_name" content="分隔符" />
+<meta property="og:url" content="https://maxwellf1.github.io/2021-09-09/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-09T12:21:16+08:00" />
+<meta property="article:modified_time" content="2021-09-09T17:09:14+08:00" /><meta property="og:site_name" content="分隔符" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
 
-<meta name="twitter:title" content="CUDA Environment Configuration"/>
-<meta name="twitter:description" content="Windows 在Windows上安装CUDA只需要根据官网上的指南安装对应的版本并添加到系统环境变量里就可以正常使用了。但是需要配合Visual Stud"/>
+<meta name="twitter:title" content="WSL相关操作"/>
+<meta name="twitter:description" content="前一段在新闻上看到了许多WSL2的新特性，于是就加入了Windows的开发者计划更新了一下dev版本的Win11，也学着玩玩WSL。因为感觉"/>
 <meta name="application-name" content="Separator">
 <meta name="apple-mobile-web-app-title" content="Separator">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://maxwellf1.github.io/2021-08-22/" /><link rel="prev" href="https://maxwellf1.github.io/2021-08-21/" /><link rel="next" href="https://maxwellf1.github.io/2021-08-28/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://maxwellf1.github.io/2021-09-09/" /><link rel="prev" href="https://maxwellf1.github.io/2021-08-28/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "CUDA Environment Configuration",
+        "headline": "WSL相关操作",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/maxwellf1.github.io\/2021-08-22\/"
-        },"genre": "posts","keywords": "CUDA, Environment","wordcount":  1031 ,
-        "url": "https:\/\/maxwellf1.github.io\/2021-08-22\/","datePublished": "2021-08-22T19:39:00+08:00","dateModified": "2021-08-23T23:59:59+08:00","publisher": {
+            "@id": "https:\/\/maxwellf1.github.io\/2021-09-09\/"
+        },"genre": "posts","keywords": "WSL","wordcount":  922 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-09-09\/","datePublished": "2021-09-09T12:21:16+08:00","dateModified": "2021-09-09T17:09:14+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -59,7 +59,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/2021-08-22/" selected>简体中文</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/2021-09-09/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -117,7 +117,7 @@
                     <option value="auto">跟随系统</option>
                 </select>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/2021-08-22/" selected>简体中文</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/2021-09-09/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -131,12 +131,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CUDA Environment Configuration</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">WSL相关操作</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/cuda/"><i class="far fa-folder fa-fw"></i>CUDA</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-22">2021-08-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-23">2021-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1031 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>Tools</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 922 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -144,99 +144,88 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#windows">Windows</a>
+    <li><a href="#问题">问题</a>
       <ul>
-        <li><a href="#命令行设置">命令行设置</a></li>
+        <li><a href="#位置移动">位置移动</a></li>
       </ul>
     </li>
-    <li><a href="#wsl">WSL</a></li>
-    <li><a href="#参考文献">参考文献</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="windows">Windows</h2>
-<p>在Windows上安装CUDA只需要根据官网上的指南安装对应的版本并添加到系统环境变量里就可以正常使用了。但是需要配合Visual Studio，感觉这个软件过于庞大繁杂。</p>
-<h3 id="命令行设置">命令行设置</h3>
-<p>希望能够从头开始熟悉CUDA的编写、编译流程等，希望能够不用Visual Studio而是可以像Linux下直接通过命令行编译.cu文件并生成可执行文件，通过查询，根据<a href="http://iliutong.cn/2019/01/20/nvcc-cu-file-in-console-in-windows/" target="_blank" rel="noopener noreffer">1</a>完成了该配置。配置过程如下：</p>
-<p>首先要将VS的VC编译器放在环境变量中，对于我的64位系统而言要将用于x64的VC编译器放在环境变量中：</p>
+            </div><div class="content" id="content"><p>前一段在新闻上看到了许多WSL2的新特性，于是就加入了Windows的开发者计划更新了一下dev版本的Win11，也学着玩玩WSL。因为感觉除了性能可能受影响，新版本的WSL2支持的GPU访问和WSLg对图形界面的支持基本上满足了我对linux的额外需求。</p>
+<h2 id="问题">问题</h2>
 <ol>
 <li>
-<p>在系统变量Path中添加如下的两个条目：</p>
+<h3 id="位置移动">位置移动</h3>
+<p>WSL默认装在C盘里，再在里面装各种工具后会导致空间占用很大，影响C盘空间。于是想通过某种方式将其移动到另一块比较空的磁盘中。网上查到可以直接通过wsl指令来进行压缩、移动、解压的过程(例如wsl &ndash;export和wsl &ndash;import进行打包并自定义目录安装)，然而不知道是否我操作出了问题，没有成功实现。后来查到了<a href="https://github.com/DDoSolitary/LxRunOffline" target="_blank" rel="noopener noreffer">DDoSolitary/LxRunOffline: A full-featured utility for managing Windows Subsystem for Linux (WSL) (github.com)</a>这款软件，可以很方便的通过一些指令来对WSL进行管理，它可以安装任意发行版到任意目录，还可以对已经安装的WSL进行转移、备份、设置默认用户和修改环境变量等操作。安装以及使用过程参考了<a href="https://p3terx.com/archives/manage-wsl-with-lxrunoffline.html" target="_blank" rel="noopener noreffer">LxRunOffline 使用教程 - WSL 自定义安装、备份 - P3TERX ZONE</a>上的说明(安装后记得将路径添加到系统环境变量中)。</p>
+<p>以下命令均在以管理员权限运行的Windows Powershell下执行。</p>
+<p>查看系统中已经安装的WSL：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">lxrunoffline l
+</code></pre></td></tr></table>
+</div>
+</div><p>将WSL镜像移动到指定目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">lxrunoffline m -n &lt;WSL名称&gt; -d &lt;路径&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>查看路径，进行确认：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">lxrunoffline -di -n &lt;WSL名称&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>然而初次执行移动命令的时候有报错：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\M</span>icrosoft Visual Studio<span class="se">\2</span>017<span class="se">\C</span>ommunity<span class="se">\V</span>C<span class="se">\T</span>ools<span class="se">\M</span>SVC<span class="se">\1</span>4.16.27023<span class="se">\b</span>in<span class="se">\H</span>ostx64<span class="se">\x</span><span class="m">64</span>
-C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\M</span>icrosoft Visual Studio<span class="se">\2</span>017<span class="se">\C</span>ommunity<span class="se">\C</span>ommon7<span class="se">\I</span>DE
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>ERROR<span class="o">]</span> Couldn<span class="err">&#39;</span>t <span class="nb">set</span> the <span class="k">case</span> sensitive attribute of the directory <span class="s2">&#34;......
+</span><span class="s2">Reason: Indicates that the directory trying to be deleted is not empty.
+</span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p>在系统变量中新建一个叫LIB的变量，并为其添加三个条目：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\M</span>icrosoft Visual Studio<span class="se">\2</span>017<span class="se">\C</span>ommunity<span class="se">\V</span>C<span class="se">\T</span>ools<span class="se">\M</span>SVC<span class="se">\1</span>4.16.27023<span class="se">\l</span>ib<span class="se">\x</span><span class="m">64</span>
-C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\W</span>indows Kits<span class="se">\1</span>0<span class="se">\L</span>ib<span class="se">\1</span>0.0.15063.0<span class="se">\u</span>crt<span class="se">\x</span><span class="m">64</span>
-C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\W</span>indows Kits<span class="se">\1</span>0<span class="se">\L</span>ib<span class="se">\1</span>0.0.15063.0<span class="se">\u</span>m<span class="se">\x</span><span class="m">64</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>在系统变量中新建一个叫INCLUDE的变量，为其添加两个条目。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\M</span>icrosoft Visual Studio<span class="se">\2</span>017<span class="se">\C</span>ommunity<span class="se">\V</span>C<span class="se">\T</span>ools<span class="se">\M</span>SVC<span class="se">\1</span>4.16.27023<span class="se">\i</span>nclude
-C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\W</span>indows Kits<span class="se">\1</span>0<span class="se">\I</span>nclude<span class="se">\1</span>0.0.15063.0<span class="se">\u</span>crt
-</code></pre></td></tr></table>
-</div>
-</div><p>以上三个步骤的作用其实是让 VC 编译器脱离 Visual Studio IDE 环境生效，也就是说可以让 VC 编译器 cl.exe 在命令行下编译 .cpp 或 .c 文件。因为 nvcc 编译器虽说是 .cu 的编译器，但是它还是要调用 VC 编译器 cl.exe 来对 .cu 文件进行编译，这也就是说为什么 CUDA 离不开 Visual Studio，而在其他平台上，比如 Linux，可能 CUDA 需要调用 gcc 或 g++ 编译器来完成对 .cu 文件的编译。经过这个配置过程后就可以通过nvcc指令加上相关参数来编译执行代码了。(比如我现在的thinkpadt470p需要加上-arch=compute_35的选项，因为硬件和默认的编译选项不匹配)。</p>
+</div><p>看起来是没有默认设为大小写敏感，于是尝试在Powershell中使用fsutil指令尝试enable大小写敏感，然而手动执行的时候仍然会报“文件夹不为空”的错误。后来参考<a href="https://www.dtmao.cc/news_show_4481932.shtml" target="_blank" rel="noopener noreffer">迁移WSL时的报错：0x80073d21 此应用的发布者不允许将其移动到其他位置-dtcms模板网 (dtmao.cc)</a>的解决办法，换了<a href="https://ddosolitary-builds.sourceforge.io/LxRunOffline/LxRunOffline-v3.5.0-11-gfdab71a-msvc.zip" target="_blank" rel="noopener noreffer">另一个版本的LxRunOffline</a>,成功解决了报错问题。移动之后就是把C盘中对应文件夹下的镜像文件ext4.vhdx移动到了指定目录下，然而移动完成后发现无法打开移动后的WSL子系统，后来通过重启电脑解决了这个问题。</p>
 </li>
-</ol>
-<h2 id="wsl">WSL</h2>
-<p>由于想用到linux相关的命令行，而且觉得从头开始编写和编译能够理解的更清楚，但电脑上又没有双系统。我从CUDA的官方文档中看到了对WSL的支持，就去网上搜索了相关的教程。一开始安装好了CUDA，但是nvidia-smi无法访问显卡，以为是WSL设置的原因，搞了好久。最后又重读了一遍CUDA的官方文档发现对Windows系统的版本有要求，最好是20145以上的，但我查看自己的windows10系统，居然只是19xxx，而且检查过后居然没有可用的更新。</p>
-<p>后来发现必须加入Windows预览体验计划才能更新这些版本，自己加入并选择DEV Channel后居然自动给我更新了win11&hellip;只能硬着头皮上了，感觉自己的电脑配置不一定够用，安好之后又按照官方文档重来一遍，这次可以正常在WSL访问到GPU并使用CUDA了。不得不说win11长得属实有点像MACOS啊，而且这次警示我一定不要先瞎去网上找资料，<strong>RTFM</strong>。</p>
-<h2 id="参考文献">参考文献</h2>
-<ol>
-<li><a href="http://iliutong.cn/2019/01/20/nvcc-cu-file-in-console-in-windows/" target="_blank" rel="noopener noreffer">Windows 下在命令行编译 CUDA 文件</a></li>
 <li></li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-08-23</span>
+                <span>更新于 2021-09-09</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/2021-08-22/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/2021-09-09/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration" data-hashtags="CUDA,Environment"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="https://maxwellf1.github.io/2021-08-22/" data-hashtag="CUDA"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://maxwellf1.github.io/2021-08-22/" data-title="CUDA Environment Configuration"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作" data-hashtags="WSL"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="https://maxwellf1.github.io/2021-09-09/" data-hashtag="WSL"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://maxwellf1.github.io/2021-09-09/" data-title="WSL相关操作"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cuda/">CUDA</a>,&nbsp;<a href="/tags/environment/">Environment</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wsl/">WSL</a></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2021-08-21/" class="prev" rel="prev" title="Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model"><i class="fas fa-angle-left fa-fw"></i>Udacity CS344-Intro to Parallel Programming-Unit1-The GPU Programming Model</a>
-            <a href="/2021-08-28/" class="next" rel="next" title="Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns">Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2021-08-28/" class="prev" rel="prev" title="Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns"><i class="fas fa-angle-left fa-fw"></i>Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns</a></div>
 </div>
 <div id="comments"></div></article></div>
         </main><footer class="footer">
