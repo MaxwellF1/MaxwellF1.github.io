@@ -4,9 +4,16 @@
         <link>https://maxwellf1.github.io/</link>
         <description>Separator</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
-            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Thu, 09 Sep 2021 12:21:16 &#43;0800</lastBuildDate>
+            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Fri, 10 Sep 2021 11:23:19 &#43;0800</lastBuildDate>
             <atom:link href="https://maxwellf1.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>浏览器设置</title>
+    <link>https://maxwellf1.github.io/2021-09-10/</link>
+    <pubDate>Fri, 10 Sep 2021 11:23:19 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://maxwellf1.github.io/2021-09-10/</guid>
+    <description><![CDATA[没想到9.20的卜算7点多过去就只能去直播教室了，干脆在宿舍听。但是直播网站需要用到silverlight插件，目前这个插件只支持到win1]]></description>
+</item><item>
     <title>WSL相关操作</title>
     <link>https://maxwellf1.github.io/2021-09-09/</link>
     <pubDate>Thu, 09 Sep 2021 12:21:16 &#43;0800</pubDate><author>

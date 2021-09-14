@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://maxwellf1.github.io/2021-09-09/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-09T12:21:16+08:00" />
-<meta property="article:modified_time" content="2021-09-09T17:09:14+08:00" /><meta property="og:site_name" content="分隔符" />
+<meta property="article:modified_time" content="2021-09-14T19:54:42+08:00" /><meta property="og:site_name" content="分隔符" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
@@ -22,7 +22,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://maxwellf1.github.io/2021-09-09/" /><link rel="prev" href="https://maxwellf1.github.io/2021-08-28/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://maxwellf1.github.io/2021-09-09/" /><link rel="prev" href="https://maxwellf1.github.io/2021-08-28/" /><link rel="next" href="https://maxwellf1.github.io/2021-09-10/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -33,8 +33,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/maxwellf1.github.io\/2021-09-09\/"
-        },"genre": "posts","keywords": "WSL","wordcount":  922 ,
-        "url": "https:\/\/maxwellf1.github.io\/2021-09-09\/","datePublished": "2021-09-09T12:21:16+08:00","dateModified": "2021-09-09T17:09:14+08:00","publisher": {
+        },"genre": "posts","keywords": "WSL","wordcount":  1578 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-09-09\/","datePublished": "2021-09-09T12:21:16+08:00","dateModified": "2021-09-14T19:54:42+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -135,8 +135,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>Tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 922 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-14">2021-09-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1578 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -147,6 +147,7 @@
     <li><a href="#问题">问题</a>
       <ul>
         <li><a href="#位置移动">位置移动</a></li>
+        <li><a href="#拒决访问">拒决访问</a></li>
       </ul>
     </li>
   </ul>
@@ -198,13 +199,30 @@
 </div>
 </div><p>看起来是没有默认设为大小写敏感，于是尝试在Powershell中使用fsutil指令尝试enable大小写敏感，然而手动执行的时候仍然会报“文件夹不为空”的错误。后来参考<a href="https://www.dtmao.cc/news_show_4481932.shtml" target="_blank" rel="noopener noreffer">迁移WSL时的报错：0x80073d21 此应用的发布者不允许将其移动到其他位置-dtcms模板网 (dtmao.cc)</a>的解决办法，换了<a href="https://ddosolitary-builds.sourceforge.io/LxRunOffline/LxRunOffline-v3.5.0-11-gfdab71a-msvc.zip" target="_blank" rel="noopener noreffer">另一个版本的LxRunOffline</a>,成功解决了报错问题。移动之后就是把C盘中对应文件夹下的镜像文件ext4.vhdx移动到了指定目录下，然而移动完成后发现无法打开移动后的WSL子系统，后来通过重启电脑解决了这个问题。</p>
 </li>
+<li>
+<h3 id="拒决访问">拒决访问</h3>
+<p>迁移位置之后，多次出现了运行wsl时出现拒绝访问的问题。首先去“启用或关闭Windows功能”中检查了一下WSL相关功能是否正常启用，即“适用于Linux的Windows子系统、虚拟机平台”。然后去网上查询了相关资料，有的人说是因为某些原因导致只有在以管理员权限运行的powershell或者cmd中才能打开，尝试之后发现这并不是我想要的解决方案，没有变化。</p>
+<p>又看到是因为hyper-V功能问题导致的，想到不小心使用了一下VMware，听说WSL和VMware是不兼容的，怀疑是自动把我hyper-V给关闭了。于是去百度上搜索了一下重启的命令。第一条是关闭第二条是重新打开。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> bcdedit /set hypervisorlaunchtype off
+ bcdedit /set hypervisorlaunchtype auto
+</code></pre></td></tr></table>
+</div>
+</div><p>重启之后发现仍然没有解决问题，又打开“启用或关闭Windows功能”中查看，突然发现列表里根本没有Hyper-V相关的选项。我当时就是满脸问号，🤣？？？我Hyper-V呢？？？难不成用一下VMware还能自动把我Hyper-V给卸载了？表示无语，根据网上的教程安装并启用了一下Hyper-V。<strong>暂时</strong>解决了这个问题。</p>
+<p>但就在一天之后，又出现了拒绝访问的问题。这次用前面的方法是怎么都解决不了了。我尝试重新安了另一个子系统，发现可以正常打开，所以怀疑是否是我移动ext4.vhdx文件后导致该文件相关权限出了问题才拒绝访问。于是又去网上查询了相关解答。在微软的官方论坛中找到了<a href="https://answers.microsoft.com/en-us/windows/forum/all/kb4565503-installed-then-wsl-2-failed-to-start/25794c4f-0b20-465e-bbdb-a8af3d9e0e88" target="_blank" rel="noopener noreffer">类似的问题</a>。打开属性-&gt;安全后果不其然，我的User对该镜像文件的权限只有修改，编辑后打开User的“完全控制”权限。终于解决了这个问题。</p>
+</li>
 <li></li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-09</span>
+                <span>更新于 2021-09-14</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -225,7 +243,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2021-08-28/" class="prev" rel="prev" title="Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns"><i class="fas fa-angle-left fa-fw"></i>Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns</a></div>
+    <div class="post-nav"><a href="/2021-08-28/" class="prev" rel="prev" title="Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns"><i class="fas fa-angle-left fa-fw"></i>Udacity CS344-Intro to Parallel Programming-Unit2-GPU Hardware and Parallel Communication Patterns</a>
+            <a href="/2021-09-10/" class="next" rel="next" title="浏览器设置">浏览器设置<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
         </main><footer class="footer">
