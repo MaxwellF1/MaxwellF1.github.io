@@ -99,6 +99,16 @@ scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令�
 
 具体命令及参数可以见参考文献的几个链接。
 
+
+
+## 一些问题
+
+1. vscode提示例如“unsupported zsh”等unsupported terminal launch等情况。
+
+   通常是因为设置中默认的shell服务器端不支持。根据参考链接8，可以打开vscode的terminal 相关settings。例如把`"terminal.integrated.shell.linux": "/bin/zsh"`修改为`.../bash`。
+
+2. 
+
 ## 参考文献
 
 1. [VS Code Remote SSH配置](https://zhuanlan.zhihu.com/p/68577071)
@@ -114,6 +124,8 @@ scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令�
 6. [scp详解_LZJWXJ树袋熊-CSDN博客](https://blog.csdn.net/qq_36898043/article/details/79404815?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~default-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~default-2.control)
 
 7. [Linux在同一台服务器不同账号之间传输文件_蓝一潇的博客-CSDN博客](https://blog.csdn.net/weixin_42744102/article/details/87913348)
+
+8. [Troubleshoot Visual Studio Code Integrated Terminal launch failures](https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch)
 
    
 

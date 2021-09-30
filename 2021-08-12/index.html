@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://maxwellf1.github.io/2021-08-12/" /><meta property="og:image" content="https://maxwellf1.github.io/favicon.ico"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-12T10:51:13+08:00" />
-<meta property="article:modified_time" content="2021-08-14T18:03:00+08:00" /><meta property="og:site_name" content="分隔符" />
+<meta property="article:modified_time" content="2021-09-30T08:27:52+08:00" /><meta property="og:site_name" content="分隔符" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maxwellf1.github.io/favicon.ico"/>
@@ -33,8 +33,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/maxwellf1.github.io\/2021-08-12\/"
-        },"genre": "posts","keywords": "Server","wordcount":  2305 ,
-        "url": "https:\/\/maxwellf1.github.io\/2021-08-12\/","datePublished": "2021-08-12T10:51:13+08:00","dateModified": "2021-08-14T18:03:00+08:00","publisher": {
+        },"genre": "posts","keywords": "Server","wordcount":  2507 ,
+        "url": "https:\/\/maxwellf1.github.io\/2021-08-12\/","datePublished": "2021-08-12T10:51:13+08:00","dateModified": "2021-09-30T08:27:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -135,8 +135,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>Tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-14">2021-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2305 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2507 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -157,6 +157,7 @@
         <li><a href="#命令">命令</a></li>
       </ul>
     </li>
+    <li><a href="#一些问题">一些问题</a></li>
     <li><a href="#参考文献">参考文献</a></li>
   </ul>
 </nav></div>
@@ -276,6 +277,14 @@ Host TargetMachine           #远程服务器名称
 <p>当在同一个服务器<strong>不同账户</strong>之间传输文件时可以用scp命令。例如想把服务器下B用户目录下的某文件b拷到A用户目录下，可以采用如下指令</p>
 <p><code>scp -r dir_B/b serverIP:/dir_A</code></p>
 <p>具体命令及参数可以见参考文献的几个链接。</p>
+<h2 id="一些问题">一些问题</h2>
+<ol>
+<li>
+<p>vscode提示例如“unsupported zsh”等unsupported terminal launch等情况。</p>
+<p>通常是因为设置中默认的shell服务器端不支持。根据参考链接8，可以打开vscode的terminal 相关settings。例如把<code>&quot;terminal.integrated.shell.linux&quot;: &quot;/bin/zsh&quot;</code>修改为<code>.../bash</code>。</p>
+</li>
+<li></li>
+</ol>
 <h2 id="参考文献">参考文献</h2>
 <ol>
 <li>
@@ -299,12 +308,15 @@ Host TargetMachine           #远程服务器名称
 <li>
 <p><a href="https://blog.csdn.net/weixin_42744102/article/details/87913348" target="_blank" rel="noopener noreffer">Linux在同一台服务器不同账号之间传输文件_蓝一潇的博客-CSDN博客</a></p>
 </li>
+<li>
+<p><a href="https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch" target="_blank" rel="noopener noreffer">Troubleshoot Visual Studio Code Integrated Terminal launch failures</a></p>
+</li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-08-14</span>
+                <span>更新于 2021-09-30</span>
             </div>
             <div class="post-info-license"></div>
         </div>
