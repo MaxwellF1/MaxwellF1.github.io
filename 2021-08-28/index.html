@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/maxwellf1.github.io\/2021-08-28\/"
-        },"genre": "posts","keywords": "Udacity, CUDA, HPC","wordcount":  1743 ,
+        },"genre": "posts","keywords": "Udacity, CUDA, HPC","wordcount":  2476 ,
         "url": "https:\/\/maxwellf1.github.io\/2021-08-28\/","datePublished": "2021-08-28T17:18:32+08:00","dateModified": "2021-08-28T17:18:32+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -135,8 +135,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Separator</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/hpc/"><i class="far fa-folder fa-fw"></i>HPC</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-28">2021-08-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-28">2021-08-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1743 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-28">2021-08-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-28">2021-08-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2476 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -164,8 +164,21 @@
             <li><a href="#barrier">Barrier</a></li>
           </ul>
         </li>
+        <li><a href="#cuda-programming-model">CUDA Programming Model</a></li>
       </ul>
     </li>
+    <li><a href="#writing-efficient-programs">Writing Efficient Programs</a>
+      <ul>
+        <li><a href="#1maximize-arithmetric-intensity">1.Maximize arithmetric intensity</a>
+          <ul>
+            <li><a href="#minimize-time-spent-on-memory">Minimize time spent on memory</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-avoid-thread-divergence">2. Avoid thread divergence</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#problem-set-2">Problem Set 2</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>对于新的高性能架构，通常能源效益应该放在设计的第一位，之后要紧接考虑的是可编程性和应用范围。(performance goal: extremscale, 10^18)。</p>
@@ -281,8 +294,88 @@
 <p>线程需要进行同步，以避免出现后面的线程在前面的线程计算/写入结果之前就进行读取的情况。</p>
 <h4 id="barrier">Barrier</h4>
 <p>同步中最简单的一种形式。即设置一个点，程序中的线程会到这点停止并等待，直到所有线程都达到屏障点。</p>
-<p>eg:</p>
-</div><div class="post-footer" id="post-footer">
+<p>eg:<img
+        class="lazyload"
+        data-src="../../../images/2021/11/barrier_shifteg.png"
+        data-srcset="../../../images/2021/11/barrier_shifteg.png, ../../../images/2021/11/barrier_shifteg.png 1.5x, ../../../images/2021/11/barrier_shifteg.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/11/barrier_shifteg.png"
+        title="image"
+    /></p>
+<h3 id="cuda-programming-model">CUDA Programming Model</h3>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/11/cuda_programmingmodel.png"
+        data-srcset="../../../images/2021/11/cuda_programmingmodel.png, ../../../images/2021/11/cuda_programmingmodel.png 1.5x, ../../../images/2021/11/cuda_programmingmodel.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/11/cuda_programmingmodel.png"
+        title="image"
+    /></p>
+<p>CUDA的核心是计算层次。即线程、线程块和内核。以及与其对应的内存空间层次结构：本地、共享和全局内存。还有同步原语，例如同步线程的barrier，以及先后两个内核之间的默认隐式的barrier。</p>
+<h2 id="writing-efficient-programs">Writing Efficient Programs</h2>
+<p>编写GPU程序时应当牢记几点原则：</p>
+<h3 id="1maximize-arithmetric-intensity">1.Maximize arithmetric intensity</h3>
+<p>GPU的计算能力很强。高端GPU每秒可以进行超过3 trillion次数(TFLOPS)的数学计算。如果让这些计算单元等待太久是很低效的。arithmetric intensity基本可以理解为math/memory，即访问的单位内存上我们可以进行的数学计算量。所以我们可以通过增大分子或者减小分母来提高性能。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/11/max_arith_intensity.png"
+        data-srcset="../../../images/2021/11/max_arith_intensity.png, ../../../images/2021/11/max_arith_intensity.png 1.5x, ../../../images/2021/11/max_arith_intensity.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/11/max_arith_intensity.png"
+        title="image"
+    /></p>
+<h4 id="minimize-time-spent-on-memory">Minimize time spent on memory</h4>
+<ol>
+<li>
+<p>把常用的数据放在更快的内存层次中。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/11/mem_fast.png"
+        data-srcset="../../../images/2021/11/mem_fast.png, ../../../images/2021/11/mem_fast.png 1.5x, ../../../images/2021/11/mem_fast.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/11/mem_fast.png"
+        title="image"
+    /></p>
+<p>注意shared mem是在一个block内部共享的，生命周期也对应于它所在的block，因此计算结果要存回到全局内存中。</p>
+</li>
+<li>
+<p>合并对全局内存的访问(coalesce global memory accesses)</p>
+<p>线程读取/写入连续的全局内存位置是最高效的。</p>
+</li>
+<li>
+<p>读写冲突：</p>
+<p>可以通过同步、原子操作来解决。原子操作有加、减、异或等，其中一个特别有趣的操作是atomicCAS(Compare and Swap)。  但原子操作是有很明显的<strong>缺陷</strong>，首先它只支持某些特定的运算和数据类型(例如没有求余，而且主要是对整型数据)，其实可以用CAS来实现各种不原生支持的操作(但效率可能会很低)；而且用原子操作仍然是没有顺序约束的，而浮点数的运算是没有结合律的，精度可能会由于不同的顺序做不同的舍入处理；GPU在这种情况下强制线程<strong>串行化</strong>的访问内存，这样速度会很慢。</p>
+</li>
+<li></li>
+</ol>
+<h3 id="2-avoid-thread-divergence">2. Avoid thread divergence</h3>
+<p>就是说要避免让处于同一个线程块中的线程执行不同的操作，因为这样会降低速度，硬件中的有些线程运行而有些闲置。也许可以讲条件语句进行拆分，根据条件分成独立的kernel。</p>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/11/thread_divergence.png"
+        data-srcset="../../../images/2021/11/thread_divergence.png, ../../../images/2021/11/thread_divergence.png 1.5x, ../../../images/2021/11/thread_divergence.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/11/thread_divergence.png"
+        title="image"
+    /></p>
+<h2 id="summary">Summary</h2>
+<p><img
+        class="lazyload"
+        data-src="../../../images/2021/11/sum2.png"
+        data-srcset="../../../images/2021/11/sum2.png, ../../../images/2021/11/sum2.png 1.5x, ../../../images/2021/11/sum2.png 2x"
+        data-sizes="auto"
+        alt="../../../images/2021/11/sum2.png"
+        title="image"
+    /></p>
+<h2 id="problem-set-2">Problem Set 2</h2>
+<p>A parallel bluring algorithm.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

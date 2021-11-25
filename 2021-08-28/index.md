@@ -90,6 +90,57 @@ CUDA对线程块将在何时、何处运行不作保证，事实上这是CUDA的
 
 同步中最简单的一种形式。即设置一个点，程序中的线程会到这点停止并等待，直到所有线程都达到屏障点。
 
-eg:
+eg:![image](../../../images/2021/11/barrier_shifteg.png)
+
+### CUDA Programming Model
+
+![image](../../../images/2021/11/cuda_programmingmodel.png)
+
+CUDA的核心是计算层次。即线程、线程块和内核。以及与其对应的内存空间层次结构：本地、共享和全局内存。还有同步原语，例如同步线程的barrier，以及先后两个内核之间的默认隐式的barrier。
+
+## Writing Efficient Programs
+
+编写GPU程序时应当牢记几点原则：
+
+### 1.Maximize arithmetric intensity
+
+GPU的计算能力很强。高端GPU每秒可以进行超过3 trillion次数(TFLOPS)的数学计算。如果让这些计算单元等待太久是很低效的。arithmetric intensity基本可以理解为math/memory，即访问的单位内存上我们可以进行的数学计算量。所以我们可以通过增大分子或者减小分母来提高性能。
+
+![image](../../../images/2021/11/max_arith_intensity.png)
+
+#### Minimize time spent on memory
+
+1. 把常用的数据放在更快的内存层次中。
+
+   ![image](../../../images/2021/11/mem_fast.png)
+
+   注意shared mem是在一个block内部共享的，生命周期也对应于它所在的block，因此计算结果要存回到全局内存中。
+
+2. 合并对全局内存的访问(coalesce global memory accesses)
+
+   线程读取/写入连续的全局内存位置是最高效的。
+
+3. 读写冲突：
+
+   可以通过同步、原子操作来解决。原子操作有加、减、异或等，其中一个特别有趣的操作是atomicCAS(Compare and Swap)。  但原子操作是有很明显的**缺陷**，首先它只支持某些特定的运算和数据类型(例如没有求余，而且主要是对整型数据)，其实可以用CAS来实现各种不原生支持的操作(但效率可能会很低)；而且用原子操作仍然是没有顺序约束的，而浮点数的运算是没有结合律的，精度可能会由于不同的顺序做不同的舍入处理；GPU在这种情况下强制线程**串行化**的访问内存，这样速度会很慢。 
+
+3. 
+
+### 2. Avoid thread divergence
+
+就是说要避免让处于同一个线程块中的线程执行不同的操作，因为这样会降低速度，硬件中的有些线程运行而有些闲置。也许可以讲条件语句进行拆分，根据条件分成独立的kernel。
+
+![image](../../../images/2021/11/thread_divergence.png)
+
+## Summary
+
+![image](../../../images/2021/11/sum2.png)
+
+## Problem Set 2
+
+A parallel bluring algorithm.
+
+```c
+```
 
 

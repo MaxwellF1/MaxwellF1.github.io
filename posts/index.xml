@@ -4,7 +4,21 @@
         <link>https://maxwellf1.github.io/posts/</link>
         <description>所有文章 | 分隔符</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>separateur.f@gmail.com (Separator)</managingEditor>
-            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Fri, 10 Sep 2021 11:23:19 &#43;0800</lastBuildDate><atom:link href="https://maxwellf1.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>separateur.f@gmail.com (Separator)</webMaster><lastBuildDate>Sat, 16 Oct 2021 20:43:07 &#43;0800</lastBuildDate><atom:link href="https://maxwellf1.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>洛谷模板题目练习</title>
+    <link>https://maxwellf1.github.io/2021-10-16/</link>
+    <pubDate>Sat, 16 Oct 2021 20:43:07 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://maxwellf1.github.io/2021-10-16/</guid>
+    <description><![CDATA[为了学习C++顺便练手，听67建议先刷一遍洛谷的模板题来练手，在这里记录写题过程和总结。 题目 P3367 【模板】并查集(2021/10/16)： 本题目]]></description>
+</item><item>
+    <title>Spack学习</title>
+    <link>https://maxwellf1.github.io/2021-10-12/</link>
+    <pubDate>Tue, 12 Oct 2021 17:03:23 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://maxwellf1.github.io/2021-10-12/</guid>
+    <description><![CDATA[在强师兄的推荐下了解到了Spack这款包管理的工具，好像在HPC领域用的很多。查阅了一些资料，在自己使用的过程中也遇到了一些问题。为了加深自]]></description>
+</item><item>
     <title>浏览器设置</title>
     <link>https://maxwellf1.github.io/2021-09-10/</link>
     <pubDate>Fri, 10 Sep 2021 11:23:19 &#43;0800</pubDate><author>
